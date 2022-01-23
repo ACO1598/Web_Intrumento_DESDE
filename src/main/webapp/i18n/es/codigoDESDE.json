@@ -1,0 +1,32 @@
+{
+  "indexTestApp": {
+    "codigoDESDE": {
+      "home": {
+        "title": "Codigo DESDES",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Codigo DESDE",
+        "createOrEditLabel": "Crear o editar Codigo DESDE",
+        "notFound": "Ningún Codigo DESDES encontrado"
+      },
+      "created": "Un nuevo Codigo DESDE ha sido creado con el identificador {{ param }}",
+      "updated": "Un Codigo DESDE ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Codigo DESDE ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Codigo DESDE {{ id }}?"
+      },
+      "detail": {
+        "title": "Codigo DESDE"
+      },
+      "id": "ID",
+      "version": "Version",
+      "fecha": "Fecha",
+      "introduccion": "Introduccion",
+      "terminologiaComun": "Terminologia Comun",
+      "importanciaContexto": "Importancia Contexto",
+      "descripcion": "Descripcion",
+      "poblacionObjetivo": "Poblacion Objetivo",
+      "referencia": "Referencia",
+      "seccion": "Seccion"
+    }
+  }
+}

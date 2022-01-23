@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-clasificador-heading"
+        data-cy="ClasificadorCreateUpdateHeading"
+        jhiTranslate="indexTestApp.clasificador.home.createOrEditLabel"
+      >
+        Create or edit a Clasificador
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="indexTestApp.clasificador.nombre" for="field_nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          <div *ngIf="editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nombre')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="indexTestApp.clasificador.descripcion" for="field_descripcion">Descripcion</label>
+          <input
+            type="text"
+            class="form-control"
+            name="descripcion"
+            id="field_descripcion"
+            data-cy="descripcion"
+            formControlName="descripcion"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="indexTestApp.clasificador.ejemplos" for="field_ejemplos">Ejemplos</label>
+          <input type="text" class="form-control" name="ejemplos" id="field_ejemplos" data-cy="ejemplos" formControlName="ejemplos" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="indexTestApp.clasificador.seccion" for="field_seccion">Seccion</label>
+          <select class="form-control" id="field_seccion" data-cy="seccion" name="seccion" formControlName="seccion">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="seccionOption.id === editForm.get('seccion')!.value?.id ? editForm.get('seccion')!.value : seccionOption"
+              *ngFor="let seccionOption of seccionsSharedCollection; trackBy: trackSeccionById"
+            >
+              {{ seccionOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="indexTestApp.clasificador.hijoC" for="field_hijoC">Hijo C</label>
+          <select class="form-control" id="field_hijoC" data-cy="hijoC" name="hijoC" formControlName="hijoC">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="clasificadorOption.id === editForm.get('hijoC')!.value?.id ? editForm.get('hijoC')!.value : clasificadorOption"
+              *ngFor="let clasificadorOption of clasificadorsSharedCollection; trackBy: trackClasificadorById"
+            >
+              {{ clasificadorOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

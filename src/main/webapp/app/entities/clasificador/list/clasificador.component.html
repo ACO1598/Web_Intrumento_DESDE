@@ -1,0 +1,94 @@
+<div>
+  <h2 id="page-heading" data-cy="ClasificadorHeading">
+    <span jhiTranslate="indexTestApp.clasificador.home.title">Clasificadors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="indexTestApp.clasificador.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-clasificador"
+        [routerLink]="['/clasificador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="indexTestApp.clasificador.home.createLabel"> Create a new Clasificador </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="clasificadors?.length === 0">
+    <span jhiTranslate="indexTestApp.clasificador.home.notFound">No clasificadors found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="clasificadors && clasificadors.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.nombre">Nombre</span></th>
+          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.descripcion">Descripcion</span></th>
+          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.ejemplos">Ejemplos</span></th>
+          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.seccion">Seccion</span></th>
+          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.hijoC">Hijo C</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let clasificador of clasificadors; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/clasificador', clasificador.id, 'view']">{{ clasificador.id }}</a>
+          </td>
+          <td>{{ clasificador.nombre }}</td>
+          <td>{{ clasificador.descripcion }}</td>
+          <td>{{ clasificador.ejemplos }}</td>
+          <td>
+            <div *ngIf="clasificador.seccion">
+              <a [routerLink]="['/seccion', clasificador.seccion?.id, 'view']">{{ clasificador.seccion?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="clasificador.hijoC">
+              <a [routerLink]="['/clasificador', clasificador.hijoC?.id, 'view']">{{ clasificador.hijoC?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/clasificador', clasificador.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/clasificador', clasificador.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(clasificador)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

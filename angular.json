@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "test-db-2": {
+    "index-test": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -84,15 +84,15 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "test-db-2:build:development",
+            "browserTarget": "index-test:build:development",
             "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "test-db-2:build:production"
+              "browserTarget": "index-test:build:production"
             },
             "development": {
-              "browserTarget": "test-db-2:build:development"
+              "browserTarget": "index-test:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -106,7 +106,7 @@
       }
     }
   },
-  "defaultProject": "test-db-2",
+  "defaultProject": "index-test",
   "cli": {
     "packageManager": "npm"
   }

@@ -1,0 +1,29 @@
+{
+  "indexTestApp": {
+    "identificador": {
+      "home": {
+        "title": "Identificadors",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Identificador",
+        "createOrEditLabel": "Crear o editar Identificador",
+        "notFound": "Ningún Identificadors encontrado"
+      },
+      "created": "Un nuevo Identificador ha sido creado con el identificador {{ param }}",
+      "updated": "Un Identificador ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Identificador ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Identificador {{ id }}?"
+      },
+      "detail": {
+        "title": "Identificador"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "codigo": "Codigo",
+      "descripcion": "Descripcion",
+      "parentI": "Parent I",
+      "clasificador": "Clasificador",
+      "hijoI": "Hijo I"
+    }
+  }
+}

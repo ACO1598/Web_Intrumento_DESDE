@@ -1,13 +1,13 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
 version: '3.8'
 services:
-  test_db2-mysql:
+  indextest-mysql:
     image: mysql:8.0.26
     # volumes:
-    #   - ~/volumes/jhipster/test_DB2/mysql/:/var/lib/mysql/
+    #   - ~/volumes/jhipster/indexTest/mysql/:/var/lib/mysql/
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-      - MYSQL_DATABASE=test_db2
+      - MYSQL_DATABASE=indextest
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:

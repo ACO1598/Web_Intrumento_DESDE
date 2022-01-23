@@ -1,0 +1,43 @@
+{
+  "name": "Seccion",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "clasificador",
+      "otherEntityRelationshipName": "seccion",
+      "relationshipName": "clasificador"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "codigoDESDE",
+      "otherEntityRelationshipName": "seccion",
+      "relationshipName": "codigoDESDE"
+    }
+  ],
+  "entityTableName": "seccion",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["indexTest"],
+  "changelogDate": "20220119200631"
+}

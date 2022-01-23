@@ -1,0 +1,57 @@
+{
+  "name": "CodigoDESDE",
+  "fields": [
+    {
+      "fieldName": "version",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fecha",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "introduccion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "terminologiaComun",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "importanciaContexto",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "poblacionObjetivo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "referencia",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "seccion",
+      "otherEntityRelationshipName": "codigoDESDE",
+      "relationshipName": "seccion"
+    }
+  ],
+  "entityTableName": "codigo_desde",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["indexTest"],
+  "changelogDate": "20220119200630"
+}

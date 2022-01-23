@@ -1,0 +1,30 @@
+{
+  "indexTestApp": {
+    "clasificador": {
+      "home": {
+        "title": "Clasificadors",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Clasificador",
+        "createOrEditLabel": "Crear o editar Clasificador",
+        "notFound": "Ningún Clasificadors encontrado"
+      },
+      "created": "Un nuevo Clasificador ha sido creado con el identificador {{ param }}",
+      "updated": "Un Clasificador ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Clasificador ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Clasificador {{ id }}?"
+      },
+      "detail": {
+        "title": "Clasificador"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "descripcion": "Descripcion",
+      "ejemplos": "Ejemplos",
+      "identificador": "Identificador",
+      "parentC": "Parent C",
+      "seccion": "Seccion",
+      "hijoC": "Hijo C"
+    }
+  }
+}

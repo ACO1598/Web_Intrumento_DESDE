@@ -1,7 +1,7 @@
 {
   "generator-jhipster": {
     "applicationType": "monolith",
-    "baseName": "test_DB2",
+    "baseName": "indexTest",
     "jhipsterVersion": "7.3.1",
     "skipClient": false,
     "skipServer": false,
@@ -16,15 +16,15 @@
     "otherModules": [],
     "pages": [],
     "creationTimestamp": 1642622501362,
-    "serviceDiscoveryType": "no",
+    "serviceDiscoveryType": false,
     "reactive": false,
     "authenticationType": "jwt",
-    "packageName": "com.mycompany.myapp",
+    "packageName": "es.loyola",
     "serverPort": "8080",
     "cacheProvider": "ehcache",
-    "enableHibernateCache": false,
+    "enableHibernateCache": true,
     "databaseType": "sql",
-    "devDatabaseType": "mysql",
+    "devDatabaseType": "h2Disk",
     "prodDatabaseType": "mysql",
     "buildTool": "maven",
     "serverSideOptions": [],
@@ -41,7 +41,12 @@
     "devServerPort": 4200,
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
-    "languages": ["es", "en"],
-    "enableGradleEnterprise": false
+    "languages": ["es"],
+    "enableGradleEnterprise": false,
+    "gradleEnterpriseHost": "",
+    "packageFolder": "es/loyola",
+    "applicationIndex": 0,
+    "entities": ["CodigoDESDE", "Seccion", "Identificador", "Clasificador", "Usuario"],
+    "lastLiquibaseTimestamp": 1642622794000
   }
 }

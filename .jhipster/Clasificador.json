@@ -1,0 +1,54 @@
+{
+  "name": "Clasificador",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ejemplos",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "identificador",
+      "otherEntityRelationshipName": "clasificador",
+      "relationshipName": "identificador"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "clasificador",
+      "otherEntityRelationshipName": "hijoC",
+      "relationshipName": "parentC"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "seccion",
+      "otherEntityRelationshipName": "clasificador",
+      "relationshipName": "seccion"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "clasificador",
+      "otherEntityRelationshipName": "parentC",
+      "relationshipName": "hijoC"
+    }
+  ],
+  "entityTableName": "clasificador",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["indexTest"],
+  "changelogDate": "20220119200633"
+}

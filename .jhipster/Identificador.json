@@ -1,0 +1,49 @@
+{
+  "name": "Identificador",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codigo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "identificador",
+      "otherEntityRelationshipName": "hijoI",
+      "relationshipName": "parentI"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "clasificador",
+      "otherEntityRelationshipName": "identificador",
+      "relationshipName": "clasificador"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "identificador",
+      "otherEntityRelationshipName": "parentI",
+      "relationshipName": "hijoI"
+    }
+  ],
+  "entityTableName": "identificador",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["indexTest"],
+  "changelogDate": "20220119200632"
+}

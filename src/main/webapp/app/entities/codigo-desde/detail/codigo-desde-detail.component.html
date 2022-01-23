@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="codigoDESDE">
+      <h2 data-cy="codigoDESDEDetailsHeading"><span jhiTranslate="indexTestApp.codigoDESDE.detail.title">Codigo DESDE</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ codigoDESDE.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="indexTestApp.codigoDESDE.version">Version</span></dt>
+        <dd>
+          <span>{{ codigoDESDE.version }}</span>
+        </dd>
+        <dt><span jhiTranslate="indexTestApp.codigoDESDE.fecha">Fecha</span></dt>
+        <dd>
+          <span>{{ codigoDESDE.fecha | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="indexTestApp.codigoDESDE.introduccion">Introduccion</span></dt>
+        <dd>
+          <span>{{ codigoDESDE.introduccion }}</span>
+        </dd>
+        <dt><span jhiTranslate="indexTestApp.codigoDESDE.terminologiaComun">Terminologia Comun</span></dt>
+        <dd>
+          <span>{{ codigoDESDE.terminologiaComun }}</span>
+        </dd>
+        <dt><span jhiTranslate="indexTestApp.codigoDESDE.importanciaContexto">Importancia Contexto</span></dt>
+        <dd>
+          <span>{{ codigoDESDE.importanciaContexto }}</span>
+        </dd>
+        <dt><span jhiTranslate="indexTestApp.codigoDESDE.descripcion">Descripcion</span></dt>
+        <dd>
+          <span>{{ codigoDESDE.descripcion }}</span>
+        </dd>
+        <dt><span jhiTranslate="indexTestApp.codigoDESDE.poblacionObjetivo">Poblacion Objetivo</span></dt>
+        <dd>
+          <span>{{ codigoDESDE.poblacionObjetivo }}</span>
+        </dd>
+        <dt><span jhiTranslate="indexTestApp.codigoDESDE.referencia">Referencia</span></dt>
+        <dd>
+          <span>{{ codigoDESDE.referencia }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/codigo-desde', codigoDESDE.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
