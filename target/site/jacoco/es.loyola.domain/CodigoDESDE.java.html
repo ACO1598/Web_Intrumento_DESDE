@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CodigoDESDE.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Index Test</a> &gt; <a href="index.source.html" class="el_package">es.loyola.domain</a> &gt; <span class="el_source">CodigoDESDE.java</span></div><h1>CodigoDESDE.java</h1><pre class="source lang-java linenums">package es.loyola.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+/**
+ * A CodigoDESDE.
+ */
+@Entity
+@Table(name = &quot;codigo_desde&quot;)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+<span class="fc" id="L19">public class CodigoDESDE implements Serializable {</span>
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;id&quot;)
+    private Long id;
+
+    @NotNull
+    @Column(name = &quot;version&quot;, nullable = false)
+    private String version;
+
+    @NotNull
+    @Column(name = &quot;fecha&quot;, nullable = false)
+    private LocalDate fecha;
+
+    @Column(name = &quot;introduccion&quot;)
+    private String introduccion;
+
+    @Column(name = &quot;terminologia_comun&quot;)
+    private String terminologiaComun;
+
+    @Column(name = &quot;importancia_contexto&quot;)
+    private String importanciaContexto;
+
+    @Column(name = &quot;descripcion&quot;)
+    private String descripcion;
+
+    @Column(name = &quot;poblacion_objetivo&quot;)
+    private String poblacionObjetivo;
+
+    @Column(name = &quot;referencia&quot;)
+    private String referencia;
+
+<span class="fc" id="L54">    @OneToMany(mappedBy = &quot;codigoDESDE&quot;)</span>
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { &quot;clasificadors&quot;, &quot;codigoDESDE&quot; }, allowSetters = true)
+    private Set&lt;Seccion&gt; seccions = new HashSet&lt;&gt;();
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Long getId() {
+<span class="fc" id="L62">        return this.id;</span>
+    }
+
+    public CodigoDESDE id(Long id) {
+<span class="nc" id="L66">        this.setId(id);</span>
+<span class="nc" id="L67">        return this;</span>
+    }
+
+    public void setId(Long id) {
+<span class="fc" id="L71">        this.id = id;</span>
+<span class="fc" id="L72">    }</span>
+
+    public String getVersion() {
+<span class="fc" id="L75">        return this.version;</span>
+    }
+
+    public CodigoDESDE version(String version) {
+<span class="nc" id="L79">        this.setVersion(version);</span>
+<span class="nc" id="L80">        return this;</span>
+    }
+
+    public void setVersion(String version) {
+<span class="nc" id="L84">        this.version = version;</span>
+<span class="nc" id="L85">    }</span>
+
+    public LocalDate getFecha() {
+<span class="fc" id="L88">        return this.fecha;</span>
+    }
+
+    public CodigoDESDE fecha(LocalDate fecha) {
+<span class="nc" id="L92">        this.setFecha(fecha);</span>
+<span class="nc" id="L93">        return this;</span>
+    }
+
+    public void setFecha(LocalDate fecha) {
+<span class="nc" id="L97">        this.fecha = fecha;</span>
+<span class="nc" id="L98">    }</span>
+
+    public String getIntroduccion() {
+<span class="fc" id="L101">        return this.introduccion;</span>
+    }
+
+    public CodigoDESDE introduccion(String introduccion) {
+<span class="nc" id="L105">        this.setIntroduccion(introduccion);</span>
+<span class="nc" id="L106">        return this;</span>
+    }
+
+    public void setIntroduccion(String introduccion) {
+<span class="nc" id="L110">        this.introduccion = introduccion;</span>
+<span class="nc" id="L111">    }</span>
+
+    public String getTerminologiaComun() {
+<span class="fc" id="L114">        return this.terminologiaComun;</span>
+    }
+
+    public CodigoDESDE terminologiaComun(String terminologiaComun) {
+<span class="nc" id="L118">        this.setTerminologiaComun(terminologiaComun);</span>
+<span class="nc" id="L119">        return this;</span>
+    }
+
+    public void setTerminologiaComun(String terminologiaComun) {
+<span class="nc" id="L123">        this.terminologiaComun = terminologiaComun;</span>
+<span class="nc" id="L124">    }</span>
+
+    public String getImportanciaContexto() {
+<span class="fc" id="L127">        return this.importanciaContexto;</span>
+    }
+
+    public CodigoDESDE importanciaContexto(String importanciaContexto) {
+<span class="nc" id="L131">        this.setImportanciaContexto(importanciaContexto);</span>
+<span class="nc" id="L132">        return this;</span>
+    }
+
+    public void setImportanciaContexto(String importanciaContexto) {
+<span class="nc" id="L136">        this.importanciaContexto = importanciaContexto;</span>
+<span class="nc" id="L137">    }</span>
+
+    public String getDescripcion() {
+<span class="fc" id="L140">        return this.descripcion;</span>
+    }
+
+    public CodigoDESDE descripcion(String descripcion) {
+<span class="nc" id="L144">        this.setDescripcion(descripcion);</span>
+<span class="nc" id="L145">        return this;</span>
+    }
+
+    public void setDescripcion(String descripcion) {
+<span class="nc" id="L149">        this.descripcion = descripcion;</span>
+<span class="nc" id="L150">    }</span>
+
+    public String getPoblacionObjetivo() {
+<span class="fc" id="L153">        return this.poblacionObjetivo;</span>
+    }
+
+    public CodigoDESDE poblacionObjetivo(String poblacionObjetivo) {
+<span class="nc" id="L157">        this.setPoblacionObjetivo(poblacionObjetivo);</span>
+<span class="nc" id="L158">        return this;</span>
+    }
+
+    public void setPoblacionObjetivo(String poblacionObjetivo) {
+<span class="nc" id="L162">        this.poblacionObjetivo = poblacionObjetivo;</span>
+<span class="nc" id="L163">    }</span>
+
+    public String getReferencia() {
+<span class="fc" id="L166">        return this.referencia;</span>
+    }
+
+    public CodigoDESDE referencia(String referencia) {
+<span class="nc" id="L170">        this.setReferencia(referencia);</span>
+<span class="nc" id="L171">        return this;</span>
+    }
+
+    public void setReferencia(String referencia) {
+<span class="nc" id="L175">        this.referencia = referencia;</span>
+<span class="nc" id="L176">    }</span>
+
+    public Set&lt;Seccion&gt; getSeccions() {
+<span class="nc" id="L179">        return this.seccions;</span>
+    }
+
+    public void setSeccions(Set&lt;Seccion&gt; seccions) {
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        if (this.seccions != null) {</span>
+<span class="nc" id="L184">            this.seccions.forEach(i -&gt; i.setCodigoDESDE(null));</span>
+        }
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (seccions != null) {</span>
+<span class="nc" id="L187">            seccions.forEach(i -&gt; i.setCodigoDESDE(this));</span>
+        }
+<span class="nc" id="L189">        this.seccions = seccions;</span>
+<span class="nc" id="L190">    }</span>
+
+    public CodigoDESDE seccions(Set&lt;Seccion&gt; seccions) {
+<span class="nc" id="L193">        this.setSeccions(seccions);</span>
+<span class="nc" id="L194">        return this;</span>
+    }
+
+    public CodigoDESDE addSeccion(Seccion seccion) {
+<span class="nc" id="L198">        this.seccions.add(seccion);</span>
+<span class="nc" id="L199">        seccion.setCodigoDESDE(this);</span>
+<span class="nc" id="L200">        return this;</span>
+    }
+
+    public CodigoDESDE removeSeccion(Seccion seccion) {
+<span class="nc" id="L204">        this.seccions.remove(seccion);</span>
+<span class="nc" id="L205">        seccion.setCodigoDESDE(null);</span>
+<span class="nc" id="L206">        return this;</span>
+    }
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L213" title="1 of 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L214">            return true;</span>
+        }
+<span class="fc bfc" id="L216" title="All 2 branches covered.">        if (!(o instanceof CodigoDESDE)) {</span>
+<span class="fc" id="L217">            return false;</span>
+        }
+<span class="fc bfc" id="L219" title="All 4 branches covered.">        return id != null &amp;&amp; id.equals(((CodigoDESDE) o).id);</span>
+    }
+
+    @Override
+    public int hashCode() {
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+<span class="fc" id="L225">        return getClass().hashCode();</span>
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+<span class="fc" id="L231">        return &quot;CodigoDESDE{&quot; +</span>
+<span class="fc" id="L232">            &quot;id=&quot; + getId() +</span>
+<span class="fc" id="L233">            &quot;, version='&quot; + getVersion() + &quot;'&quot; +</span>
+<span class="fc" id="L234">            &quot;, fecha='&quot; + getFecha() + &quot;'&quot; +</span>
+<span class="fc" id="L235">            &quot;, introduccion='&quot; + getIntroduccion() + &quot;'&quot; +</span>
+<span class="fc" id="L236">            &quot;, terminologiaComun='&quot; + getTerminologiaComun() + &quot;'&quot; +</span>
+<span class="fc" id="L237">            &quot;, importanciaContexto='&quot; + getImportanciaContexto() + &quot;'&quot; +</span>
+<span class="fc" id="L238">            &quot;, descripcion='&quot; + getDescripcion() + &quot;'&quot; +</span>
+<span class="fc" id="L239">            &quot;, poblacionObjetivo='&quot; + getPoblacionObjetivo() + &quot;'&quot; +</span>
+<span class="fc" id="L240">            &quot;, referencia='&quot; + getReferencia() + &quot;'&quot; +</span>
+            &quot;}&quot;;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

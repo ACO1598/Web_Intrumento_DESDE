@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SeccionResource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Index Test</a> &gt; <a href="index.source.html" class="el_package">es.loyola.web.rest</a> &gt; <span class="el_source">SeccionResource.java</span></div><h1>SeccionResource.java</h1><pre class="source lang-java linenums">package es.loyola.web.rest;
+
+import es.loyola.domain.Seccion;
+import es.loyola.repository.SeccionRepository;
+import es.loyola.web.rest.errors.BadRequestAlertException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+import tech.jhipster.web.util.HeaderUtil;
+import tech.jhipster.web.util.ResponseUtil;
+
+/**
+ * REST controller for managing {@link es.loyola.domain.Seccion}.
+ */
+@RestController
+@RequestMapping(&quot;/api&quot;)
+@Transactional
+public class SeccionResource {
+
+<span class="nc" id="L30">    private final Logger log = LoggerFactory.getLogger(SeccionResource.class);</span>
+
+    private static final String ENTITY_NAME = &quot;seccion&quot;;
+
+    @Value(&quot;${jhipster.clientApp.name}&quot;)
+    private String applicationName;
+
+    private final SeccionRepository seccionRepository;
+
+<span class="nc" id="L39">    public SeccionResource(SeccionRepository seccionRepository) {</span>
+<span class="nc" id="L40">        this.seccionRepository = seccionRepository;</span>
+<span class="nc" id="L41">    }</span>
+
+    /**
+     * {@code POST  /seccions} : Create a new seccion.
+     *
+     * @param seccion the seccion to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new seccion, or with status {@code 400 (Bad Request)} if the seccion has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PostMapping(&quot;/seccions&quot;)
+    public ResponseEntity&lt;Seccion&gt; createSeccion(@Valid @RequestBody Seccion seccion) throws URISyntaxException {
+<span class="nc" id="L52">        log.debug(&quot;REST request to save Seccion : {}&quot;, seccion);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (seccion.getId() != null) {</span>
+<span class="nc" id="L54">            throw new BadRequestAlertException(&quot;A new seccion cannot already have an ID&quot;, ENTITY_NAME, &quot;idexists&quot;);</span>
+        }
+<span class="nc" id="L56">        Seccion result = seccionRepository.save(seccion);</span>
+<span class="nc" id="L57">        return ResponseEntity</span>
+<span class="nc" id="L58">            .created(new URI(&quot;/api/seccions/&quot; + result.getId()))</span>
+<span class="nc" id="L59">            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))</span>
+<span class="nc" id="L60">            .body(result);</span>
+    }
+
+    /**
+     * {@code PUT  /seccions/:id} : Updates an existing seccion.
+     *
+     * @param id the id of the seccion to save.
+     * @param seccion the seccion to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated seccion,
+     * or with status {@code 400 (Bad Request)} if the seccion is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the seccion couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PutMapping(&quot;/seccions/{id}&quot;)
+    public ResponseEntity&lt;Seccion&gt; updateSeccion(
+        @PathVariable(value = &quot;id&quot;, required = false) final Long id,
+        @Valid @RequestBody Seccion seccion
+    ) throws URISyntaxException {
+<span class="nc" id="L78">        log.debug(&quot;REST request to update Seccion : {}, {}&quot;, id, seccion);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (seccion.getId() == null) {</span>
+<span class="nc" id="L80">            throw new BadRequestAlertException(&quot;Invalid id&quot;, ENTITY_NAME, &quot;idnull&quot;);</span>
+        }
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (!Objects.equals(id, seccion.getId())) {</span>
+<span class="nc" id="L83">            throw new BadRequestAlertException(&quot;Invalid ID&quot;, ENTITY_NAME, &quot;idinvalid&quot;);</span>
+        }
+
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (!seccionRepository.existsById(id)) {</span>
+<span class="nc" id="L87">            throw new BadRequestAlertException(&quot;Entity not found&quot;, ENTITY_NAME, &quot;idnotfound&quot;);</span>
+        }
+
+<span class="nc" id="L90">        Seccion result = seccionRepository.save(seccion);</span>
+<span class="nc" id="L91">        return ResponseEntity</span>
+<span class="nc" id="L92">            .ok()</span>
+<span class="nc" id="L93">            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, seccion.getId().toString()))</span>
+<span class="nc" id="L94">            .body(result);</span>
+    }
+
+    /**
+     * {@code PATCH  /seccions/:id} : Partial updates given fields of an existing seccion, field will ignore if it is null
+     *
+     * @param id the id of the seccion to save.
+     * @param seccion the seccion to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated seccion,
+     * or with status {@code 400 (Bad Request)} if the seccion is not valid,
+     * or with status {@code 404 (Not Found)} if the seccion is not found,
+     * or with status {@code 500 (Internal Server Error)} if the seccion couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PatchMapping(value = &quot;/seccions/{id}&quot;, consumes = { &quot;application/json&quot;, &quot;application/merge-patch+json&quot; })
+    public ResponseEntity&lt;Seccion&gt; partialUpdateSeccion(
+        @PathVariable(value = &quot;id&quot;, required = false) final Long id,
+        @NotNull @RequestBody Seccion seccion
+    ) throws URISyntaxException {
+<span class="nc" id="L113">        log.debug(&quot;REST request to partial update Seccion partially : {}, {}&quot;, id, seccion);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (seccion.getId() == null) {</span>
+<span class="nc" id="L115">            throw new BadRequestAlertException(&quot;Invalid id&quot;, ENTITY_NAME, &quot;idnull&quot;);</span>
+        }
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (!Objects.equals(id, seccion.getId())) {</span>
+<span class="nc" id="L118">            throw new BadRequestAlertException(&quot;Invalid ID&quot;, ENTITY_NAME, &quot;idinvalid&quot;);</span>
+        }
+
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (!seccionRepository.existsById(id)) {</span>
+<span class="nc" id="L122">            throw new BadRequestAlertException(&quot;Entity not found&quot;, ENTITY_NAME, &quot;idnotfound&quot;);</span>
+        }
+
+<span class="nc" id="L125">        Optional&lt;Seccion&gt; result = seccionRepository</span>
+<span class="nc" id="L126">            .findById(seccion.getId())</span>
+<span class="nc" id="L127">            .map(existingSeccion -&gt; {</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                if (seccion.getNombre() != null) {</span>
+<span class="nc" id="L129">                    existingSeccion.setNombre(seccion.getNombre());</span>
+                }
+<span class="nc bnc" id="L131" title="All 2 branches missed.">                if (seccion.getDescripcion() != null) {</span>
+<span class="nc" id="L132">                    existingSeccion.setDescripcion(seccion.getDescripcion());</span>
+                }
+<span class="nc bnc" id="L134" title="All 2 branches missed.">                if (seccion.getCodigo() != null) {</span>
+<span class="nc" id="L135">                    existingSeccion.setCodigo(seccion.getCodigo());</span>
+                }
+
+<span class="nc" id="L138">                return existingSeccion;</span>
+            })
+<span class="nc" id="L140">            .map(seccionRepository::save);</span>
+
+<span class="nc" id="L142">        return ResponseUtil.wrapOrNotFound(</span>
+            result,
+<span class="nc" id="L144">            HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, seccion.getId().toString())</span>
+        );
+    }
+
+    /**
+     * {@code GET  /seccions} : get all the seccions.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of seccions in body.
+     */
+    @GetMapping(&quot;/seccions&quot;)
+    public List&lt;Seccion&gt; getAllSeccions() {
+<span class="nc" id="L155">        log.debug(&quot;REST request to get all Seccions&quot;);</span>
+<span class="nc" id="L156">        return seccionRepository.findAll();</span>
+    }
+
+    /**
+     * {@code GET  /seccions/:id} : get the &quot;id&quot; seccion.
+     *
+     * @param id the id of the seccion to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the seccion, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping(&quot;/seccions/{id}&quot;)
+    public ResponseEntity&lt;Seccion&gt; getSeccion(@PathVariable Long id) {
+<span class="nc" id="L167">        log.debug(&quot;REST request to get Seccion : {}&quot;, id);</span>
+<span class="nc" id="L168">        Optional&lt;Seccion&gt; seccion = seccionRepository.findById(id);</span>
+<span class="nc" id="L169">        return ResponseUtil.wrapOrNotFound(seccion);</span>
+    }
+
+    /**
+     * {@code DELETE  /seccions/:id} : delete the &quot;id&quot; seccion.
+     *
+     * @param id the id of the seccion to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+     */
+    @DeleteMapping(&quot;/seccions/{id}&quot;)
+    public ResponseEntity&lt;Void&gt; deleteSeccion(@PathVariable Long id) {
+<span class="nc" id="L180">        log.debug(&quot;REST request to delete Seccion : {}&quot;, id);</span>
+<span class="nc" id="L181">        seccionRepository.deleteById(id);</span>
+<span class="nc" id="L182">        return ResponseEntity</span>
+<span class="nc" id="L183">            .noContent()</span>
+<span class="nc" id="L184">            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))</span>
+<span class="nc" id="L185">            .build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

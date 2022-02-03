@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Clasificador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Index Test</a> &gt; <a href="index.source.html" class="el_package">es.loyola.domain</a> &gt; <span class="el_source">Clasificador.java</span></div><h1>Clasificador.java</h1><pre class="source lang-java linenums">package es.loyola.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+/**
+ * A Clasificador.
+ */
+@Entity
+@Table(name = &quot;clasificador&quot;)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+<span class="fc" id="L18">public class Clasificador implements Serializable {</span>
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;id&quot;)
+    private Long id;
+
+    @NotNull
+    @Column(name = &quot;nombre&quot;, nullable = false)
+    private String nombre;
+
+    @Column(name = &quot;descripcion&quot;)
+    private String descripcion;
+
+    @Column(name = &quot;ejemplos&quot;)
+    private String ejemplos;
+
+<span class="fc" id="L37">    @OneToMany(mappedBy = &quot;clasificador&quot;)</span>
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { &quot;parentIS&quot;, &quot;clasificador&quot;, &quot;hijoI&quot; }, allowSetters = true)
+    private Set&lt;Identificador&gt; identificadors = new HashSet&lt;&gt;();
+
+<span class="fc" id="L42">    @OneToMany(mappedBy = &quot;hijoC&quot;)</span>
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { &quot;identificadors&quot;, &quot;parentCS&quot;, &quot;seccion&quot;, &quot;hijoC&quot; }, allowSetters = true)
+    private Set&lt;Clasificador&gt; parentCS = new HashSet&lt;&gt;();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { &quot;clasificadors&quot;, &quot;codigoDESDE&quot; }, allowSetters = true)
+    private Seccion seccion;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { &quot;identificadors&quot;, &quot;parentCS&quot;, &quot;seccion&quot;, &quot;hijoC&quot; }, allowSetters = true)
+    private Clasificador hijoC;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Long getId() {
+<span class="fc" id="L58">        return this.id;</span>
+    }
+
+    public Clasificador id(Long id) {
+<span class="nc" id="L62">        this.setId(id);</span>
+<span class="nc" id="L63">        return this;</span>
+    }
+
+    public void setId(Long id) {
+<span class="fc" id="L67">        this.id = id;</span>
+<span class="fc" id="L68">    }</span>
+
+    public String getNombre() {
+<span class="fc" id="L71">        return this.nombre;</span>
+    }
+
+    public Clasificador nombre(String nombre) {
+<span class="nc" id="L75">        this.setNombre(nombre);</span>
+<span class="nc" id="L76">        return this;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L80">        this.nombre = nombre;</span>
+<span class="nc" id="L81">    }</span>
+
+    public String getDescripcion() {
+<span class="fc" id="L84">        return this.descripcion;</span>
+    }
+
+    public Clasificador descripcion(String descripcion) {
+<span class="nc" id="L88">        this.setDescripcion(descripcion);</span>
+<span class="nc" id="L89">        return this;</span>
+    }
+
+    public void setDescripcion(String descripcion) {
+<span class="nc" id="L93">        this.descripcion = descripcion;</span>
+<span class="nc" id="L94">    }</span>
+
+    public String getEjemplos() {
+<span class="fc" id="L97">        return this.ejemplos;</span>
+    }
+
+    public Clasificador ejemplos(String ejemplos) {
+<span class="nc" id="L101">        this.setEjemplos(ejemplos);</span>
+<span class="nc" id="L102">        return this;</span>
+    }
+
+    public void setEjemplos(String ejemplos) {
+<span class="nc" id="L106">        this.ejemplos = ejemplos;</span>
+<span class="nc" id="L107">    }</span>
+
+    public Set&lt;Identificador&gt; getIdentificadors() {
+<span class="nc" id="L110">        return this.identificadors;</span>
+    }
+
+    public void setIdentificadors(Set&lt;Identificador&gt; identificadors) {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (this.identificadors != null) {</span>
+<span class="nc" id="L115">            this.identificadors.forEach(i -&gt; i.setClasificador(null));</span>
+        }
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (identificadors != null) {</span>
+<span class="nc" id="L118">            identificadors.forEach(i -&gt; i.setClasificador(this));</span>
+        }
+<span class="nc" id="L120">        this.identificadors = identificadors;</span>
+<span class="nc" id="L121">    }</span>
+
+    public Clasificador identificadors(Set&lt;Identificador&gt; identificadors) {
+<span class="nc" id="L124">        this.setIdentificadors(identificadors);</span>
+<span class="nc" id="L125">        return this;</span>
+    }
+
+    public Clasificador addIdentificador(Identificador identificador) {
+<span class="nc" id="L129">        this.identificadors.add(identificador);</span>
+<span class="nc" id="L130">        identificador.setClasificador(this);</span>
+<span class="nc" id="L131">        return this;</span>
+    }
+
+    public Clasificador removeIdentificador(Identificador identificador) {
+<span class="nc" id="L135">        this.identificadors.remove(identificador);</span>
+<span class="nc" id="L136">        identificador.setClasificador(null);</span>
+<span class="nc" id="L137">        return this;</span>
+    }
+
+    public Set&lt;Clasificador&gt; getParentCS() {
+<span class="nc" id="L141">        return this.parentCS;</span>
+    }
+
+    public void setParentCS(Set&lt;Clasificador&gt; clasificadors) {
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        if (this.parentCS != null) {</span>
+<span class="nc" id="L146">            this.parentCS.forEach(i -&gt; i.setHijoC(null));</span>
+        }
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (clasificadors != null) {</span>
+<span class="nc" id="L149">            clasificadors.forEach(i -&gt; i.setHijoC(this));</span>
+        }
+<span class="nc" id="L151">        this.parentCS = clasificadors;</span>
+<span class="nc" id="L152">    }</span>
+
+    public Clasificador parentCS(Set&lt;Clasificador&gt; clasificadors) {
+<span class="nc" id="L155">        this.setParentCS(clasificadors);</span>
+<span class="nc" id="L156">        return this;</span>
+    }
+
+    public Clasificador addParentC(Clasificador clasificador) {
+<span class="nc" id="L160">        this.parentCS.add(clasificador);</span>
+<span class="nc" id="L161">        clasificador.setHijoC(this);</span>
+<span class="nc" id="L162">        return this;</span>
+    }
+
+    public Clasificador removeParentC(Clasificador clasificador) {
+<span class="nc" id="L166">        this.parentCS.remove(clasificador);</span>
+<span class="nc" id="L167">        clasificador.setHijoC(null);</span>
+<span class="nc" id="L168">        return this;</span>
+    }
+
+    public Seccion getSeccion() {
+<span class="nc" id="L172">        return this.seccion;</span>
+    }
+
+    public void setSeccion(Seccion seccion) {
+<span class="nc" id="L176">        this.seccion = seccion;</span>
+<span class="nc" id="L177">    }</span>
+
+    public Clasificador seccion(Seccion seccion) {
+<span class="nc" id="L180">        this.setSeccion(seccion);</span>
+<span class="nc" id="L181">        return this;</span>
+    }
+
+    public Clasificador getHijoC() {
+<span class="nc" id="L185">        return this.hijoC;</span>
+    }
+
+    public void setHijoC(Clasificador clasificador) {
+<span class="nc" id="L189">        this.hijoC = clasificador;</span>
+<span class="nc" id="L190">    }</span>
+
+    public Clasificador hijoC(Clasificador clasificador) {
+<span class="nc" id="L193">        this.setHijoC(clasificador);</span>
+<span class="nc" id="L194">        return this;</span>
+    }
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L202">            return true;</span>
+        }
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        if (!(o instanceof Clasificador)) {</span>
+<span class="fc" id="L205">            return false;</span>
+        }
+<span class="fc bfc" id="L207" title="All 4 branches covered.">        return id != null &amp;&amp; id.equals(((Clasificador) o).id);</span>
+    }
+
+    @Override
+    public int hashCode() {
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+<span class="fc" id="L213">        return getClass().hashCode();</span>
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+<span class="fc" id="L219">        return &quot;Clasificador{&quot; +</span>
+<span class="fc" id="L220">            &quot;id=&quot; + getId() +</span>
+<span class="fc" id="L221">            &quot;, nombre='&quot; + getNombre() + &quot;'&quot; +</span>
+<span class="fc" id="L222">            &quot;, descripcion='&quot; + getDescripcion() + &quot;'&quot; +</span>
+<span class="fc" id="L223">            &quot;, ejemplos='&quot; + getEjemplos() + &quot;'&quot; +</span>
+            &quot;}&quot;;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

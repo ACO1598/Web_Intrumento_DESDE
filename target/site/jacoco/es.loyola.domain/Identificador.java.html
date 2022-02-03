@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Identificador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Index Test</a> &gt; <a href="index.source.html" class="el_package">es.loyola.domain</a> &gt; <span class="el_source">Identificador.java</span></div><h1>Identificador.java</h1><pre class="source lang-java linenums">package es.loyola.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+/**
+ * A Identificador.
+ */
+@Entity
+@Table(name = &quot;identificador&quot;)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+<span class="fc" id="L18">public class Identificador implements Serializable {</span>
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;id&quot;)
+    private Long id;
+
+    @NotNull
+    @Column(name = &quot;nombre&quot;, nullable = false)
+    private String nombre;
+
+    @NotNull
+    @Column(name = &quot;codigo&quot;, nullable = false)
+    private String codigo;
+
+    @Column(name = &quot;descripcion&quot;)
+    private String descripcion;
+
+<span class="fc" id="L38">    @OneToMany(mappedBy = &quot;hijoI&quot;)</span>
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { &quot;parentIS&quot;, &quot;clasificador&quot;, &quot;hijoI&quot; }, allowSetters = true)
+    private Set&lt;Identificador&gt; parentIS = new HashSet&lt;&gt;();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { &quot;identificadors&quot;, &quot;parentCS&quot;, &quot;seccion&quot;, &quot;hijoC&quot; }, allowSetters = true)
+    private Clasificador clasificador;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { &quot;parentIS&quot;, &quot;clasificador&quot;, &quot;hijoI&quot; }, allowSetters = true)
+    private Identificador hijoI;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Long getId() {
+<span class="fc" id="L54">        return this.id;</span>
+    }
+
+    public Identificador id(Long id) {
+<span class="nc" id="L58">        this.setId(id);</span>
+<span class="nc" id="L59">        return this;</span>
+    }
+
+    public void setId(Long id) {
+<span class="fc" id="L63">        this.id = id;</span>
+<span class="fc" id="L64">    }</span>
+
+    public String getNombre() {
+<span class="fc" id="L67">        return this.nombre;</span>
+    }
+
+    public Identificador nombre(String nombre) {
+<span class="nc" id="L71">        this.setNombre(nombre);</span>
+<span class="nc" id="L72">        return this;</span>
+    }
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L76">        this.nombre = nombre;</span>
+<span class="nc" id="L77">    }</span>
+
+    public String getCodigo() {
+<span class="fc" id="L80">        return this.codigo;</span>
+    }
+
+    public Identificador codigo(String codigo) {
+<span class="nc" id="L84">        this.setCodigo(codigo);</span>
+<span class="nc" id="L85">        return this;</span>
+    }
+
+    public void setCodigo(String codigo) {
+<span class="nc" id="L89">        this.codigo = codigo;</span>
+<span class="nc" id="L90">    }</span>
+
+    public String getDescripcion() {
+<span class="fc" id="L93">        return this.descripcion;</span>
+    }
+
+    public Identificador descripcion(String descripcion) {
+<span class="nc" id="L97">        this.setDescripcion(descripcion);</span>
+<span class="nc" id="L98">        return this;</span>
+    }
+
+    public void setDescripcion(String descripcion) {
+<span class="nc" id="L102">        this.descripcion = descripcion;</span>
+<span class="nc" id="L103">    }</span>
+
+    public Set&lt;Identificador&gt; getParentIS() {
+<span class="nc" id="L106">        return this.parentIS;</span>
+    }
+
+    public void setParentIS(Set&lt;Identificador&gt; identificadors) {
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if (this.parentIS != null) {</span>
+<span class="nc" id="L111">            this.parentIS.forEach(i -&gt; i.setHijoI(null));</span>
+        }
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (identificadors != null) {</span>
+<span class="nc" id="L114">            identificadors.forEach(i -&gt; i.setHijoI(this));</span>
+        }
+<span class="nc" id="L116">        this.parentIS = identificadors;</span>
+<span class="nc" id="L117">    }</span>
+
+    public Identificador parentIS(Set&lt;Identificador&gt; identificadors) {
+<span class="nc" id="L120">        this.setParentIS(identificadors);</span>
+<span class="nc" id="L121">        return this;</span>
+    }
+
+    public Identificador addParentI(Identificador identificador) {
+<span class="nc" id="L125">        this.parentIS.add(identificador);</span>
+<span class="nc" id="L126">        identificador.setHijoI(this);</span>
+<span class="nc" id="L127">        return this;</span>
+    }
+
+    public Identificador removeParentI(Identificador identificador) {
+<span class="nc" id="L131">        this.parentIS.remove(identificador);</span>
+<span class="nc" id="L132">        identificador.setHijoI(null);</span>
+<span class="nc" id="L133">        return this;</span>
+    }
+
+    public Clasificador getClasificador() {
+<span class="nc" id="L137">        return this.clasificador;</span>
+    }
+
+    public void setClasificador(Clasificador clasificador) {
+<span class="nc" id="L141">        this.clasificador = clasificador;</span>
+<span class="nc" id="L142">    }</span>
+
+    public Identificador clasificador(Clasificador clasificador) {
+<span class="nc" id="L145">        this.setClasificador(clasificador);</span>
+<span class="nc" id="L146">        return this;</span>
+    }
+
+    public Identificador getHijoI() {
+<span class="nc" id="L150">        return this.hijoI;</span>
+    }
+
+    public void setHijoI(Identificador identificador) {
+<span class="nc" id="L154">        this.hijoI = identificador;</span>
+<span class="nc" id="L155">    }</span>
+
+    public Identificador hijoI(Identificador identificador) {
+<span class="nc" id="L158">        this.setHijoI(identificador);</span>
+<span class="nc" id="L159">        return this;</span>
+    }
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">        if (this == o) {</span>
+<span class="nc" id="L167">            return true;</span>
+        }
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        if (!(o instanceof Identificador)) {</span>
+<span class="fc" id="L170">            return false;</span>
+        }
+<span class="fc bfc" id="L172" title="All 4 branches covered.">        return id != null &amp;&amp; id.equals(((Identificador) o).id);</span>
+    }
+
+    @Override
+    public int hashCode() {
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+<span class="fc" id="L178">        return getClass().hashCode();</span>
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+<span class="fc" id="L184">        return &quot;Identificador{&quot; +</span>
+<span class="fc" id="L185">            &quot;id=&quot; + getId() +</span>
+<span class="fc" id="L186">            &quot;, nombre='&quot; + getNombre() + &quot;'&quot; +</span>
+<span class="fc" id="L187">            &quot;, codigo='&quot; + getCodigo() + &quot;'&quot; +</span>
+<span class="fc" id="L188">            &quot;, descripcion='&quot; + getDescripcion() + &quot;'&quot; +</span>
+            &quot;}&quot;;
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioResource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Index Test</a> &gt; <a href="index.source.html" class="el_package">es.loyola.web.rest</a> &gt; <span class="el_source">UsuarioResource.java</span></div><h1>UsuarioResource.java</h1><pre class="source lang-java linenums">package es.loyola.web.rest;
+
+import es.loyola.domain.Usuario;
+import es.loyola.repository.UsuarioRepository;
+import es.loyola.web.rest.errors.BadRequestAlertException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+import tech.jhipster.web.util.HeaderUtil;
+import tech.jhipster.web.util.ResponseUtil;
+
+/**
+ * REST controller for managing {@link es.loyola.domain.Usuario}.
+ */
+@RestController
+@RequestMapping(&quot;/api&quot;)
+@Transactional
+public class UsuarioResource {
+
+<span class="nc" id="L30">    private final Logger log = LoggerFactory.getLogger(UsuarioResource.class);</span>
+
+    private static final String ENTITY_NAME = &quot;usuario&quot;;
+
+    @Value(&quot;${jhipster.clientApp.name}&quot;)
+    private String applicationName;
+
+    private final UsuarioRepository usuarioRepository;
+
+<span class="nc" id="L39">    public UsuarioResource(UsuarioRepository usuarioRepository) {</span>
+<span class="nc" id="L40">        this.usuarioRepository = usuarioRepository;</span>
+<span class="nc" id="L41">    }</span>
+
+    /**
+     * {@code POST  /usuarios} : Create a new usuario.
+     *
+     * @param usuario the usuario to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new usuario, or with status {@code 400 (Bad Request)} if the usuario has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PostMapping(&quot;/usuarios&quot;)
+    public ResponseEntity&lt;Usuario&gt; createUsuario(@Valid @RequestBody Usuario usuario) throws URISyntaxException {
+<span class="nc" id="L52">        log.debug(&quot;REST request to save Usuario : {}&quot;, usuario);</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (usuario.getId() != null) {</span>
+<span class="nc" id="L54">            throw new BadRequestAlertException(&quot;A new usuario cannot already have an ID&quot;, ENTITY_NAME, &quot;idexists&quot;);</span>
+        }
+<span class="nc" id="L56">        Usuario result = usuarioRepository.save(usuario);</span>
+<span class="nc" id="L57">        return ResponseEntity</span>
+<span class="nc" id="L58">            .created(new URI(&quot;/api/usuarios/&quot; + result.getId()))</span>
+<span class="nc" id="L59">            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))</span>
+<span class="nc" id="L60">            .body(result);</span>
+    }
+
+    /**
+     * {@code PUT  /usuarios/:id} : Updates an existing usuario.
+     *
+     * @param id the id of the usuario to save.
+     * @param usuario the usuario to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated usuario,
+     * or with status {@code 400 (Bad Request)} if the usuario is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the usuario couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PutMapping(&quot;/usuarios/{id}&quot;)
+    public ResponseEntity&lt;Usuario&gt; updateUsuario(
+        @PathVariable(value = &quot;id&quot;, required = false) final Long id,
+        @Valid @RequestBody Usuario usuario
+    ) throws URISyntaxException {
+<span class="nc" id="L78">        log.debug(&quot;REST request to update Usuario : {}, {}&quot;, id, usuario);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (usuario.getId() == null) {</span>
+<span class="nc" id="L80">            throw new BadRequestAlertException(&quot;Invalid id&quot;, ENTITY_NAME, &quot;idnull&quot;);</span>
+        }
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (!Objects.equals(id, usuario.getId())) {</span>
+<span class="nc" id="L83">            throw new BadRequestAlertException(&quot;Invalid ID&quot;, ENTITY_NAME, &quot;idinvalid&quot;);</span>
+        }
+
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (!usuarioRepository.existsById(id)) {</span>
+<span class="nc" id="L87">            throw new BadRequestAlertException(&quot;Entity not found&quot;, ENTITY_NAME, &quot;idnotfound&quot;);</span>
+        }
+
+<span class="nc" id="L90">        Usuario result = usuarioRepository.save(usuario);</span>
+<span class="nc" id="L91">        return ResponseEntity</span>
+<span class="nc" id="L92">            .ok()</span>
+<span class="nc" id="L93">            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, usuario.getId().toString()))</span>
+<span class="nc" id="L94">            .body(result);</span>
+    }
+
+    /**
+     * {@code PATCH  /usuarios/:id} : Partial updates given fields of an existing usuario, field will ignore if it is null
+     *
+     * @param id the id of the usuario to save.
+     * @param usuario the usuario to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated usuario,
+     * or with status {@code 400 (Bad Request)} if the usuario is not valid,
+     * or with status {@code 404 (Not Found)} if the usuario is not found,
+     * or with status {@code 500 (Internal Server Error)} if the usuario couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PatchMapping(value = &quot;/usuarios/{id}&quot;, consumes = { &quot;application/json&quot;, &quot;application/merge-patch+json&quot; })
+    public ResponseEntity&lt;Usuario&gt; partialUpdateUsuario(
+        @PathVariable(value = &quot;id&quot;, required = false) final Long id,
+        @NotNull @RequestBody Usuario usuario
+    ) throws URISyntaxException {
+<span class="nc" id="L113">        log.debug(&quot;REST request to partial update Usuario partially : {}, {}&quot;, id, usuario);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (usuario.getId() == null) {</span>
+<span class="nc" id="L115">            throw new BadRequestAlertException(&quot;Invalid id&quot;, ENTITY_NAME, &quot;idnull&quot;);</span>
+        }
+<span class="nc bnc" id="L117" title="All 2 branches missed.">        if (!Objects.equals(id, usuario.getId())) {</span>
+<span class="nc" id="L118">            throw new BadRequestAlertException(&quot;Invalid ID&quot;, ENTITY_NAME, &quot;idinvalid&quot;);</span>
+        }
+
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (!usuarioRepository.existsById(id)) {</span>
+<span class="nc" id="L122">            throw new BadRequestAlertException(&quot;Entity not found&quot;, ENTITY_NAME, &quot;idnotfound&quot;);</span>
+        }
+
+<span class="nc" id="L125">        Optional&lt;Usuario&gt; result = usuarioRepository</span>
+<span class="nc" id="L126">            .findById(usuario.getId())</span>
+<span class="nc" id="L127">            .map(existingUsuario -&gt; {</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                if (usuario.getNombre() != null) {</span>
+<span class="nc" id="L129">                    existingUsuario.setNombre(usuario.getNombre());</span>
+                }
+<span class="nc bnc" id="L131" title="All 2 branches missed.">                if (usuario.getApellido() != null) {</span>
+<span class="nc" id="L132">                    existingUsuario.setApellido(usuario.getApellido());</span>
+                }
+<span class="nc bnc" id="L134" title="All 2 branches missed.">                if (usuario.getNombreUsuario() != null) {</span>
+<span class="nc" id="L135">                    existingUsuario.setNombreUsuario(usuario.getNombreUsuario());</span>
+                }
+<span class="nc bnc" id="L137" title="All 2 branches missed.">                if (usuario.getEmail() != null) {</span>
+<span class="nc" id="L138">                    existingUsuario.setEmail(usuario.getEmail());</span>
+                }
+<span class="nc bnc" id="L140" title="All 2 branches missed.">                if (usuario.getContrasena() != null) {</span>
+<span class="nc" id="L141">                    existingUsuario.setContrasena(usuario.getContrasena());</span>
+                }
+<span class="nc bnc" id="L143" title="All 2 branches missed.">                if (usuario.getRol() != null) {</span>
+<span class="nc" id="L144">                    existingUsuario.setRol(usuario.getRol());</span>
+                }
+
+<span class="nc" id="L147">                return existingUsuario;</span>
+            })
+<span class="nc" id="L149">            .map(usuarioRepository::save);</span>
+
+<span class="nc" id="L151">        return ResponseUtil.wrapOrNotFound(</span>
+            result,
+<span class="nc" id="L153">            HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, usuario.getId().toString())</span>
+        );
+    }
+
+    /**
+     * {@code GET  /usuarios} : get all the usuarios.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of usuarios in body.
+     */
+    @GetMapping(&quot;/usuarios&quot;)
+    public List&lt;Usuario&gt; getAllUsuarios() {
+<span class="nc" id="L164">        log.debug(&quot;REST request to get all Usuarios&quot;);</span>
+<span class="nc" id="L165">        return usuarioRepository.findAll();</span>
+    }
+
+    /**
+     * {@code GET  /usuarios/:id} : get the &quot;id&quot; usuario.
+     *
+     * @param id the id of the usuario to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the usuario, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping(&quot;/usuarios/{id}&quot;)
+    public ResponseEntity&lt;Usuario&gt; getUsuario(@PathVariable Long id) {
+<span class="nc" id="L176">        log.debug(&quot;REST request to get Usuario : {}&quot;, id);</span>
+<span class="nc" id="L177">        Optional&lt;Usuario&gt; usuario = usuarioRepository.findById(id);</span>
+<span class="nc" id="L178">        return ResponseUtil.wrapOrNotFound(usuario);</span>
+    }
+
+    /**
+     * {@code DELETE  /usuarios/:id} : delete the &quot;id&quot; usuario.
+     *
+     * @param id the id of the usuario to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+     */
+    @DeleteMapping(&quot;/usuarios/{id}&quot;)
+    public ResponseEntity&lt;Void&gt; deleteUsuario(@PathVariable Long id) {
+<span class="nc" id="L189">        log.debug(&quot;REST request to delete Usuario : {}&quot;, id);</span>
+<span class="nc" id="L190">        usuarioRepository.deleteById(id);</span>
+<span class="nc" id="L191">        return ResponseEntity</span>
+<span class="nc" id="L192">            .noContent()</span>
+<span class="nc" id="L193">            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))</span>
+<span class="nc" id="L194">            .build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
