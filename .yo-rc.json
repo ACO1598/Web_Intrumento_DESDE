@@ -2,7 +2,7 @@
   "generator-jhipster": {
     "applicationType": "monolith",
     "baseName": "indexTest",
-    "jhipsterVersion": "7.3.1",
+    "jhipsterVersion": "7.3.0",
     "skipClient": false,
     "skipServer": false,
     "skipUserManagement": false,
@@ -15,7 +15,7 @@
     "blueprints": [],
     "otherModules": [],
     "pages": [],
-    "creationTimestamp": 1642622501362,
+    "creationTimestamp": 1644343819427,
     "serviceDiscoveryType": false,
     "reactive": false,
     "authenticationType": "jwt",
@@ -37,7 +37,7 @@
     "clientTheme": "none",
     "enableTranslation": true,
     "nativeLanguage": "es",
-    "jwtSecretKey": "ZWVkMzlkZTc2OGFlMDEzNTY2MGU2OGUyMzRjNzM0ZDU5NDc5YzE1YjFiZDIxMmEyYWExOTZjZjMxNWU1Nzg0N2Q5ZjhkODg0OTBhNDczZmY4ZGJjYjMyOTNlZjhkYjU1ZDYwYjkwNWE2ZjljYWI3MTNmNzQwOTM0YmNmMmRiNmY=",
+    "jwtSecretKey": "N2ZhMTIwNTA0NDI0ZTk4YjQ3ZWM2YjdhZTY4Y2Y3ZTQ0Y2JjZDk0YzBiMGY3Mzk0NjNhNWU4MTE5YTYyZGNjODY3ZTVjOTNkODkzYmQ1ZmRjNjlkMGJiZmIxM2MxN2M0ZTI5OWQyMWU0M2NlMTM4MTY4OTFlNTUxZDY2MTllMzQ=",
     "devServerPort": 4200,
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
@@ -46,7 +46,7 @@
     "gradleEnterpriseHost": "",
     "packageFolder": "es/loyola",
     "applicationIndex": 0,
-    "entities": ["CodigoDESDE", "Seccion", "Identificador", "Clasificador", "Usuario"],
-    "lastLiquibaseTimestamp": 1642622794000
+    "entities": ["CodigoDESDE", "Seccion", "Identificador", "Clasificador"],
+    "lastLiquibaseTimestamp": 1644344395000
   }
 }

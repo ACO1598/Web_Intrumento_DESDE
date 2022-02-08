@@ -7,36 +7,38 @@ import { ProfileService } from 'app/layouts/profiles/profile.service';
 
 import { PageRibbonComponent } from './page-ribbon.component';
 
-describe('Page Ribbon Component', () => {
-  let comp: PageRibbonComponent;
-  let fixture: ComponentFixture<PageRibbonComponent>;
-  let profileService: ProfileService;
+describe('Component Tests', () => {
+  describe('Page Ribbon Component', () => {
+    let comp: PageRibbonComponent;
+    let fixture: ComponentFixture<PageRibbonComponent>;
+    let profileService: ProfileService;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
-        declarations: [PageRibbonComponent],
+    beforeEach(
+      waitForAsync(() => {
+        TestBed.configureTestingModule({
+          imports: [HttpClientTestingModule],
+          declarations: [PageRibbonComponent],
+        })
+          .overrideTemplate(PageRibbonComponent, '')
+          .compileComponents();
       })
-        .overrideTemplate(PageRibbonComponent, '')
-        .compileComponents();
-    })
-  );
+    );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PageRibbonComponent);
-    comp = fixture.componentInstance;
-    profileService = TestBed.inject(ProfileService);
-  });
+    beforeEach(() => {
+      fixture = TestBed.createComponent(PageRibbonComponent);
+      comp = fixture.componentInstance;
+      profileService = TestBed.inject(ProfileService);
+    });
 
-  it('Should call profileService.getProfileInfo on init', () => {
-    // GIVEN
-    jest.spyOn(profileService, 'getProfileInfo').mockReturnValue(of(new ProfileInfo()));
+    it('Should call profileService.getProfileInfo on init', () => {
+      // GIVEN
+      jest.spyOn(profileService, 'getProfileInfo').mockReturnValue(of(new ProfileInfo()));
 
-    // WHEN
-    comp.ngOnInit();
+      // WHEN
+      comp.ngOnInit();
 
-    // THEN
-    expect(profileService.getProfileInfo).toHaveBeenCalled();
+      // THEN
+      expect(profileService.getProfileInfo).toHaveBeenCalled();
+    });
   });
 });

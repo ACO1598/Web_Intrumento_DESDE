@@ -24,11 +24,6 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'indexTestApp.clasificador.home.title' },
         loadChildren: () => import('./clasificador/clasificador.module').then(m => m.ClasificadorModule),
       },
-      {
-        path: 'usuario',
-        data: { pageTitle: 'indexTestApp.usuario.home.title' },
-        loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule),
-      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

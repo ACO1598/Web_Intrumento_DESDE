@@ -57,7 +57,6 @@ public class CacheConfiguration {
             createCache(cm, es.loyola.domain.Clasificador.class.getName());
             createCache(cm, es.loyola.domain.Clasificador.class.getName() + ".identificadors");
             createCache(cm, es.loyola.domain.Clasificador.class.getName() + ".parentCS");
-            createCache(cm, es.loyola.domain.Usuario.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

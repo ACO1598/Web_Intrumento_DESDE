@@ -14,166 +14,168 @@ import { SeccionService } from 'app/entities/seccion/service/seccion.service';
 
 import { ClasificadorUpdateComponent } from './clasificador-update.component';
 
-describe('Clasificador Management Update Component', () => {
-  let comp: ClasificadorUpdateComponent;
-  let fixture: ComponentFixture<ClasificadorUpdateComponent>;
-  let activatedRoute: ActivatedRoute;
-  let clasificadorService: ClasificadorService;
-  let seccionService: SeccionService;
+describe('Component Tests', () => {
+  describe('Clasificador Management Update Component', () => {
+    let comp: ClasificadorUpdateComponent;
+    let fixture: ComponentFixture<ClasificadorUpdateComponent>;
+    let activatedRoute: ActivatedRoute;
+    let clasificadorService: ClasificadorService;
+    let seccionService: SeccionService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      declarations: [ClasificadorUpdateComponent],
-      providers: [FormBuilder, ActivatedRoute],
-    })
-      .overrideTemplate(ClasificadorUpdateComponent, '')
-      .compileComponents();
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [HttpClientTestingModule],
+        declarations: [ClasificadorUpdateComponent],
+        providers: [FormBuilder, ActivatedRoute],
+      })
+        .overrideTemplate(ClasificadorUpdateComponent, '')
+        .compileComponents();
 
-    fixture = TestBed.createComponent(ClasificadorUpdateComponent);
-    activatedRoute = TestBed.inject(ActivatedRoute);
-    clasificadorService = TestBed.inject(ClasificadorService);
-    seccionService = TestBed.inject(SeccionService);
+      fixture = TestBed.createComponent(ClasificadorUpdateComponent);
+      activatedRoute = TestBed.inject(ActivatedRoute);
+      clasificadorService = TestBed.inject(ClasificadorService);
+      seccionService = TestBed.inject(SeccionService);
 
-    comp = fixture.componentInstance;
-  });
-
-  describe('ngOnInit', () => {
-    it('Should call Clasificador query and add missing value', () => {
-      const clasificador: IClasificador = { id: 456 };
-      const hijoC: IClasificador = { id: 15459 };
-      clasificador.hijoC = hijoC;
-
-      const clasificadorCollection: IClasificador[] = [{ id: 35782 }];
-      jest.spyOn(clasificadorService, 'query').mockReturnValue(of(new HttpResponse({ body: clasificadorCollection })));
-      const additionalClasificadors = [hijoC];
-      const expectedCollection: IClasificador[] = [...additionalClasificadors, ...clasificadorCollection];
-      jest.spyOn(clasificadorService, 'addClasificadorToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ clasificador });
-      comp.ngOnInit();
-
-      expect(clasificadorService.query).toHaveBeenCalled();
-      expect(clasificadorService.addClasificadorToCollectionIfMissing).toHaveBeenCalledWith(
-        clasificadorCollection,
-        ...additionalClasificadors
-      );
-      expect(comp.clasificadorsSharedCollection).toEqual(expectedCollection);
+      comp = fixture.componentInstance;
     });
 
-    it('Should call Seccion query and add missing value', () => {
-      const clasificador: IClasificador = { id: 456 };
-      const seccion: ISeccion = { id: 74121 };
-      clasificador.seccion = seccion;
+    describe('ngOnInit', () => {
+      it('Should call Clasificador query and add missing value', () => {
+        const clasificador: IClasificador = { id: 456 };
+        const hijoC: IClasificador = { id: 15459 };
+        clasificador.hijoC = hijoC;
 
-      const seccionCollection: ISeccion[] = [{ id: 97231 }];
-      jest.spyOn(seccionService, 'query').mockReturnValue(of(new HttpResponse({ body: seccionCollection })));
-      const additionalSeccions = [seccion];
-      const expectedCollection: ISeccion[] = [...additionalSeccions, ...seccionCollection];
-      jest.spyOn(seccionService, 'addSeccionToCollectionIfMissing').mockReturnValue(expectedCollection);
+        const clasificadorCollection: IClasificador[] = [{ id: 35782 }];
+        jest.spyOn(clasificadorService, 'query').mockReturnValue(of(new HttpResponse({ body: clasificadorCollection })));
+        const additionalClasificadors = [hijoC];
+        const expectedCollection: IClasificador[] = [...additionalClasificadors, ...clasificadorCollection];
+        jest.spyOn(clasificadorService, 'addClasificadorToCollectionIfMissing').mockReturnValue(expectedCollection);
 
-      activatedRoute.data = of({ clasificador });
-      comp.ngOnInit();
+        activatedRoute.data = of({ clasificador });
+        comp.ngOnInit();
 
-      expect(seccionService.query).toHaveBeenCalled();
-      expect(seccionService.addSeccionToCollectionIfMissing).toHaveBeenCalledWith(seccionCollection, ...additionalSeccions);
-      expect(comp.seccionsSharedCollection).toEqual(expectedCollection);
-    });
+        expect(clasificadorService.query).toHaveBeenCalled();
+        expect(clasificadorService.addClasificadorToCollectionIfMissing).toHaveBeenCalledWith(
+          clasificadorCollection,
+          ...additionalClasificadors
+        );
+        expect(comp.clasificadorsSharedCollection).toEqual(expectedCollection);
+      });
 
-    it('Should update editForm', () => {
-      const clasificador: IClasificador = { id: 456 };
-      const hijoC: IClasificador = { id: 89809 };
-      clasificador.hijoC = hijoC;
-      const seccion: ISeccion = { id: 89905 };
-      clasificador.seccion = seccion;
+      it('Should call Seccion query and add missing value', () => {
+        const clasificador: IClasificador = { id: 456 };
+        const seccion: ISeccion = { id: 74121 };
+        clasificador.seccion = seccion;
 
-      activatedRoute.data = of({ clasificador });
-      comp.ngOnInit();
+        const seccionCollection: ISeccion[] = [{ id: 97231 }];
+        jest.spyOn(seccionService, 'query').mockReturnValue(of(new HttpResponse({ body: seccionCollection })));
+        const additionalSeccions = [seccion];
+        const expectedCollection: ISeccion[] = [...additionalSeccions, ...seccionCollection];
+        jest.spyOn(seccionService, 'addSeccionToCollectionIfMissing').mockReturnValue(expectedCollection);
 
-      expect(comp.editForm.value).toEqual(expect.objectContaining(clasificador));
-      expect(comp.clasificadorsSharedCollection).toContain(hijoC);
-      expect(comp.seccionsSharedCollection).toContain(seccion);
-    });
-  });
+        activatedRoute.data = of({ clasificador });
+        comp.ngOnInit();
 
-  describe('save', () => {
-    it('Should call update service on save for existing entity', () => {
-      // GIVEN
-      const saveSubject = new Subject<HttpResponse<Clasificador>>();
-      const clasificador = { id: 123 };
-      jest.spyOn(clasificadorService, 'update').mockReturnValue(saveSubject);
-      jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ clasificador });
-      comp.ngOnInit();
+        expect(seccionService.query).toHaveBeenCalled();
+        expect(seccionService.addSeccionToCollectionIfMissing).toHaveBeenCalledWith(seccionCollection, ...additionalSeccions);
+        expect(comp.seccionsSharedCollection).toEqual(expectedCollection);
+      });
 
-      // WHEN
-      comp.save();
-      expect(comp.isSaving).toEqual(true);
-      saveSubject.next(new HttpResponse({ body: clasificador }));
-      saveSubject.complete();
+      it('Should update editForm', () => {
+        const clasificador: IClasificador = { id: 456 };
+        const hijoC: IClasificador = { id: 89809 };
+        clasificador.hijoC = hijoC;
+        const seccion: ISeccion = { id: 89905 };
+        clasificador.seccion = seccion;
 
-      // THEN
-      expect(comp.previousState).toHaveBeenCalled();
-      expect(clasificadorService.update).toHaveBeenCalledWith(clasificador);
-      expect(comp.isSaving).toEqual(false);
-    });
+        activatedRoute.data = of({ clasificador });
+        comp.ngOnInit();
 
-    it('Should call create service on save for new entity', () => {
-      // GIVEN
-      const saveSubject = new Subject<HttpResponse<Clasificador>>();
-      const clasificador = new Clasificador();
-      jest.spyOn(clasificadorService, 'create').mockReturnValue(saveSubject);
-      jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ clasificador });
-      comp.ngOnInit();
-
-      // WHEN
-      comp.save();
-      expect(comp.isSaving).toEqual(true);
-      saveSubject.next(new HttpResponse({ body: clasificador }));
-      saveSubject.complete();
-
-      // THEN
-      expect(clasificadorService.create).toHaveBeenCalledWith(clasificador);
-      expect(comp.isSaving).toEqual(false);
-      expect(comp.previousState).toHaveBeenCalled();
-    });
-
-    it('Should set isSaving to false on error', () => {
-      // GIVEN
-      const saveSubject = new Subject<HttpResponse<Clasificador>>();
-      const clasificador = { id: 123 };
-      jest.spyOn(clasificadorService, 'update').mockReturnValue(saveSubject);
-      jest.spyOn(comp, 'previousState');
-      activatedRoute.data = of({ clasificador });
-      comp.ngOnInit();
-
-      // WHEN
-      comp.save();
-      expect(comp.isSaving).toEqual(true);
-      saveSubject.error('This is an error!');
-
-      // THEN
-      expect(clasificadorService.update).toHaveBeenCalledWith(clasificador);
-      expect(comp.isSaving).toEqual(false);
-      expect(comp.previousState).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Tracking relationships identifiers', () => {
-    describe('trackClasificadorById', () => {
-      it('Should return tracked Clasificador primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackClasificadorById(0, entity);
-        expect(trackResult).toEqual(entity.id);
+        expect(comp.editForm.value).toEqual(expect.objectContaining(clasificador));
+        expect(comp.clasificadorsSharedCollection).toContain(hijoC);
+        expect(comp.seccionsSharedCollection).toContain(seccion);
       });
     });
 
-    describe('trackSeccionById', () => {
-      it('Should return tracked Seccion primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackSeccionById(0, entity);
-        expect(trackResult).toEqual(entity.id);
+    describe('save', () => {
+      it('Should call update service on save for existing entity', () => {
+        // GIVEN
+        const saveSubject = new Subject<HttpResponse<Clasificador>>();
+        const clasificador = { id: 123 };
+        jest.spyOn(clasificadorService, 'update').mockReturnValue(saveSubject);
+        jest.spyOn(comp, 'previousState');
+        activatedRoute.data = of({ clasificador });
+        comp.ngOnInit();
+
+        // WHEN
+        comp.save();
+        expect(comp.isSaving).toEqual(true);
+        saveSubject.next(new HttpResponse({ body: clasificador }));
+        saveSubject.complete();
+
+        // THEN
+        expect(comp.previousState).toHaveBeenCalled();
+        expect(clasificadorService.update).toHaveBeenCalledWith(clasificador);
+        expect(comp.isSaving).toEqual(false);
+      });
+
+      it('Should call create service on save for new entity', () => {
+        // GIVEN
+        const saveSubject = new Subject<HttpResponse<Clasificador>>();
+        const clasificador = new Clasificador();
+        jest.spyOn(clasificadorService, 'create').mockReturnValue(saveSubject);
+        jest.spyOn(comp, 'previousState');
+        activatedRoute.data = of({ clasificador });
+        comp.ngOnInit();
+
+        // WHEN
+        comp.save();
+        expect(comp.isSaving).toEqual(true);
+        saveSubject.next(new HttpResponse({ body: clasificador }));
+        saveSubject.complete();
+
+        // THEN
+        expect(clasificadorService.create).toHaveBeenCalledWith(clasificador);
+        expect(comp.isSaving).toEqual(false);
+        expect(comp.previousState).toHaveBeenCalled();
+      });
+
+      it('Should set isSaving to false on error', () => {
+        // GIVEN
+        const saveSubject = new Subject<HttpResponse<Clasificador>>();
+        const clasificador = { id: 123 };
+        jest.spyOn(clasificadorService, 'update').mockReturnValue(saveSubject);
+        jest.spyOn(comp, 'previousState');
+        activatedRoute.data = of({ clasificador });
+        comp.ngOnInit();
+
+        // WHEN
+        comp.save();
+        expect(comp.isSaving).toEqual(true);
+        saveSubject.error('This is an error!');
+
+        // THEN
+        expect(clasificadorService.update).toHaveBeenCalledWith(clasificador);
+        expect(comp.isSaving).toEqual(false);
+        expect(comp.previousState).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('Tracking relationships identifiers', () => {
+      describe('trackClasificadorById', () => {
+        it('Should return tracked Clasificador primary key', () => {
+          const entity = { id: 123 };
+          const trackResult = comp.trackClasificadorById(0, entity);
+          expect(trackResult).toEqual(entity.id);
+        });
+      });
+
+      describe('trackSeccionById', () => {
+        it('Should return tracked Seccion primary key', () => {
+          const entity = { id: 123 };
+          const trackResult = comp.trackSeccionById(0, entity);
+          expect(trackResult).toEqual(entity.id);
+        });
       });
     });
   });
