@@ -5,6 +5,8 @@ import { takeUntil } from 'rxjs/operators';
 
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
+import { CodigoDESDEService } from 'app/entities/codigo-desde/service/codigo-desde.service';
+import { ICodigoDESDE, getCodigoDESDEIdentifier } from 'app/entities/codigo-desde/codigo-desde.model';
 
 @Component({
   selector: 'jhi-home',
@@ -16,7 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private readonly destroy$ = new Subject<void>();
 
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(private accountService: AccountService, private router: Router, public codigoDESDES: CodigoDESDEService) {}
 
   ngOnInit(): void {
     this.accountService

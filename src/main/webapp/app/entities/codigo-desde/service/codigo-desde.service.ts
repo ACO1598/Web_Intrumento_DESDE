@@ -57,6 +57,10 @@ export class CodigoDESDEService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  trackId(index: number, item: ICodigoDESDE): number {
+    return item.id!;
+  }
+
   addCodigoDESDEToCollectionIfMissing(
     codigoDESDECollection: ICodigoDESDE[],
     ...codigoDESDESToCheck: (ICodigoDESDE | null | undefined)[]
