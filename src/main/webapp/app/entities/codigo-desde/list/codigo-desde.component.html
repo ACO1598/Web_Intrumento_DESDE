@@ -57,6 +57,9 @@
           <th scope="col" jhiSortBy="referencia">
             <span jhiTranslate="indexTestApp.codigoDESDE.referencia">Referencia</span> <fa-icon icon="sort"></fa-icon>
           </th>
+          <th scope="col" jhiSortBy="referencia">
+            <span jhiTranslate="indexTestApp.codigoDESDE.referencia">Seccion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -73,6 +76,7 @@
           <td>{{ codigoDESDE.descripcion }}</td>
           <td>{{ codigoDESDE.poblacionObjetivo }}</td>
           <td>{{ codigoDESDE.referencia }}</td>
+          <td *ngFor="let seccion of codigoDESDE.seccions">{{ seccion.id }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button

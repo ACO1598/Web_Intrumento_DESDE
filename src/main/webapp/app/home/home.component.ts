@@ -6,11 +6,10 @@ import { takeUntil } from 'rxjs/operators';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { CodigoDESDEService } from 'app/entities/codigo-desde/service/codigo-desde.service';
-import { ICodigoDESDE, getCodigoDESDEIdentifier } from 'app/entities/codigo-desde/codigo-desde.model';
 
 @Component({
   selector: 'jhi-home',
-  templateUrl: './home_test.component.html',
+  templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
