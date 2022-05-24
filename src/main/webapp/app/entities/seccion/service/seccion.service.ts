@@ -16,6 +16,11 @@ export class SeccionService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
+  getSecciones(): Observable<ISeccion[]> {
+    const newLocal = this.http.get<ISeccion[]>(this.resourceUrl);
+    return newLocal;
+  }
+
   create(seccion: ISeccion): Observable<EntityResponseType> {
     return this.http.post<ISeccion>(this.resourceUrl, seccion, { observe: 'response' });
   }

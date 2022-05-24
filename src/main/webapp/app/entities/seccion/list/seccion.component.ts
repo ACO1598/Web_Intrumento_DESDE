@@ -32,6 +32,7 @@ export class SeccionComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAll();
+    this.seccionService.getSecciones();
   }
 
   trackId(index: number, item: ISeccion): number {

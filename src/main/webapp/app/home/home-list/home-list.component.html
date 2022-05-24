@@ -1,1 +1,5 @@
-<p>home-list works!</p>
+<p>{{ num }}</p>
+
+<ul *ngFor="let seccion of seccions" data-cy="entityTable">
+  <p>{{ seccion.nombre }}</p>
+</ul>
