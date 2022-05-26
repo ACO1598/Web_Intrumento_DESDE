@@ -1,5 +1,14 @@
-<p>{{ num }}</p>
+<p>Home-list se muestra</p>
 
-<ul *ngFor="let seccion of seccions" data-cy="entityTable">
-  <p>{{ seccion.nombre }}</p>
-</ul>
+<div class="alert alert-warning" id="no-result" *ngIf="seccions && seccions?.length === 0">
+  <span jhiTranslate="indexTestApp.seccion.home.notFound">No seccions found</span>
+</div>
+
+<tbody>
+  <tr *ngFor="let seccion of seccions" data-cy="entityTable">
+    <td>
+      <a [routerLink]="['/seccion', seccion.id, 'view']">{{ seccion.nombre }}</a>
+      <jhi-home-body> [seccion]= "seccion"; </jhi-home-body>
+    </td>
+  </tr>
+</tbody>
