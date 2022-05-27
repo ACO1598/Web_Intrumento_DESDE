@@ -1,5 +1,5 @@
 import { IClasificador } from 'app/entities/clasificador/clasificador.model';
-import { ISeccion, Seccion } from 'app/entities/seccion/seccion.model';
+import { ISeccion } from 'app/entities/seccion/seccion.model';
 import { Identificador } from 'app/entities/identificador/identificador.model';
 import { ICodigoDESDE } from 'app/entities/codigo-desde/codigo-desde.model';
 
@@ -9,6 +9,7 @@ export interface IHomeListElement {
   seccion?: ISeccion;
   clasificador?: IClasificador;
   identificador?: Identificador;
+  elemento?: Elemento;
 }
 
 export class HomeListElement implements IHomeListElement {
@@ -17,7 +18,8 @@ export class HomeListElement implements IHomeListElement {
     public codigoDESDE?: ICodigoDESDE,
     public seccion?: ISeccion,
     public clasificador?: IClasificador,
-    public identificador?: Identificador
+    public identificador?: Identificador,
+    public elemento?: Elemento
   ) {}
 }
 
