@@ -5,20 +5,20 @@ import { ICodigoDESDE } from 'app/entities/codigo-desde/codigo-desde.model';
 
 export interface IHomeListElement {
   id?: number;
-  codigoDESDE?: ICodigoDESDE;
-  seccion?: ISeccion;
-  clasificador?: IClasificador;
-  identificador?: Identificador;
+  codigoDESDE?: ICodigoDESDE | null;
+  seccion?: ISeccion | null;
+  clasificador?: IClasificador | null;
+  identificador?: Identificador | null;
   elemento?: Elemento;
 }
 
 export class HomeListElement implements IHomeListElement {
   constructor(
     public id?: number,
-    public codigoDESDE?: ICodigoDESDE,
-    public seccion?: ISeccion,
-    public clasificador?: IClasificador,
-    public identificador?: Identificador,
+    public codigoDESDE?: ICodigoDESDE | null,
+    public seccion?: ISeccion | null,
+    public clasificador?: IClasificador | null,
+    public identificador?: Identificador | null,
     public elemento?: Elemento
   ) {}
 }

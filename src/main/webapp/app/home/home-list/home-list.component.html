@@ -1,14 +1,36 @@
-<p>Home-list se muestra</p>
-
-<div class="alert alert-warning" id="no-result" *ngIf="seccions && seccions?.length === 0">
+<div class="alert alert-warning" id="no-result" *ngIf="clasificadores">
   <span jhiTranslate="indexTestApp.seccion.home.notFound">No seccions found</span>
 </div>
+
+<tbody>
+  <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
+    <td>
+      <p>codigo: {{ codigo.id }}</p>
+    </td>
+  </tr>
+</tbody>
 
 <tbody>
   <tr *ngFor="let seccion of seccions" data-cy="entityTable">
     <td>
       <a [routerLink]="['/seccion', seccion.id, 'view']">{{ seccion.nombre }}</a>
-      <jhi-home-body> [seccion]= "seccion"; </jhi-home-body>
+      <!--       <jhi-home-body> [seccion]= "seccion"; </jhi-home-body> -->
+    </td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr *ngFor="let clasificador of clasificadores" data-cy="entityTable">
+    <td>
+      <p>Clasificador: {{ clasificador.id }}</p>
+    </td>
+  </tr>
+</tbody>
+
+<tbody>
+  <tr *ngFor="let identificador of identificadores" data-cy="entityTable">
+    <td>
+      <p>identificador: {{ identificador.nombre }}</p>
     </td>
   </tr>
 </tbody>
