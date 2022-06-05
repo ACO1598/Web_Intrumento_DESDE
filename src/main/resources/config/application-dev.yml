@@ -32,7 +32,7 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/desde_db
+    url: jdbc:mysql://localhost:3306/testing_desde
     username: root
     password:
     hikari:

@@ -50,7 +50,7 @@
           <td>{{ seccion.codigo }}</td>
           <td>
             <div *ngIf="seccion.codigoDESDE">
-              <a [routerLink]="['/codigo-desde', seccion.codigoDESDE?.id, 'view']">{{ seccion.codigoDESDE?.id }}</a>
+              <a [routerLink]="['/clasificador', seccion.codigoDESDE.id, 'view']">{{ seccion.codigoDESDE?.id }}</a>
             </div>
           </td>
           <td class="text-right">

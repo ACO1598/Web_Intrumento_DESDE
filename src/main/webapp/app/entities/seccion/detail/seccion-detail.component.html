@@ -28,9 +28,7 @@
         </dd>
         <dt><span jhiTranslate="indexTestApp.seccion.codigoDESDE">Codigo DESDE</span></dt>
         <dd>
-          <div *ngIf="seccion.codigoDESDE">
-            <a [routerLink]="['/codigo-desde', seccion.codigoDESDE?.id, 'view']">{{ seccion.codigoDESDE?.id }}</a>
-          </div>
+          <span>{{ seccion.codigoDESDE }}</span>
         </dd>
       </dl>
 

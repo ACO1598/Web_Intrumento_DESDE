@@ -88,10 +88,10 @@ export class SeccionUpdateComponent implements OnInit {
       codigoDESDE: seccion.codigoDESDE,
     });
 
-    this.codigoDESDESSharedCollection = this.codigoDESDEService.addCodigoDESDEToCollectionIfMissing(
+    /*    this.codigoDESDESSharedCollection = this.codigoDESDEService.addCodigoDESDEToCollectionIfMissing(
       this.codigoDESDESSharedCollection,
       seccion.codigoDESDE
-    );
+    );*/
   }
 
   protected loadRelationshipsOptions(): void {

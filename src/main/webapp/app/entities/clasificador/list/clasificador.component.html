@@ -49,16 +49,8 @@
           <td>{{ clasificador.nombre }}</td>
           <td>{{ clasificador.descripcion }}</td>
           <td>{{ clasificador.ejemplos }}</td>
-          <td>
-            <div *ngIf="clasificador.seccion">
-              <a [routerLink]="['/seccion', clasificador.seccion?.id, 'view']">{{ clasificador.seccion?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="clasificador.hijoC">
-              <a [routerLink]="['/clasificador', clasificador.hijoC?.id, 'view']">{{ clasificador.hijoC?.id }}</a>
-            </div>
-          </td>
+          <td>{{ clasificador.parentCS }}</td>
+          <td>{{ clasificador.seccion }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button

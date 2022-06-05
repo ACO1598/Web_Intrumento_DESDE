@@ -46,8 +46,15 @@ export class HomeListComponent {
     this.getclasificadores();
     this.getidentificadores();
 
-    this.contadorElementos + 1;
-    this.elementos?.push(new HomeListElement(this.contadorElementos, null, null, null, null, 1));
+    if (this.seccions !== undefined) {
+      for (const seccion of this.seccions) {
+        // eslint-disable-next-line no-console
+        console.log('test');
+      }
+    }
+
+    /*    this.contadorElementos + 1;
+    this.elementos?.push(new HomeListElement(this.contadorElementos, null, null, null, null, 1));*/
   }
 
   // Estas funciones extraen las entidades de la base de datos y
