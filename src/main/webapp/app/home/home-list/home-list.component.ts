@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Component, OnInit } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
@@ -23,9 +24,9 @@ export class HomeListComponent {
   seccions?: ISeccion[];
   clasificadores?: IClasificador[];
   identificadores?: IIdentificador[];
-  elementos?: IHomeListElement[];
+  /*  elementos?: IHomeListElement[];
   seccion?: ISeccion;
-  contadorElementos = 1;
+  contadorElementos = 1;*/
 
   constructor(
     protected codigoDESDEService: CodigoDESDEService,
@@ -35,9 +36,33 @@ export class HomeListComponent {
   ) {}
 
   ngOnInit(): void {
-    /*	this.getsecciones();*/
-
     this.getelementos();
+
+    console.log(this.codigoDESDES);
+  }
+
+  ordenarJerarquias(): void {
+    if (this.seccions !== undefined && this.codigoDESDES !== undefined) {
+      //let indexcodigos= new Array<number>(this.seccions.length);
+      const arraysecciones = new Array<Array<ISeccion>>(this.codigoDESDES.length);
+
+      console.log('Entra en jerarquias');
+
+      for (const seccion of this.seccions) {
+        if (seccion.codigoDESDE?.id) {
+          const index = seccion.codigoDESDE.id;
+          console.log(index);
+
+          arraysecciones[index].push(seccion);
+
+          //this.codigoDESDES[1].seccions= new ISeccion[];
+        }
+      }
+
+      for (let i = 0; i < this.codigoDESDES.length; i++) {
+        this.codigoDESDES[i].seccions = arraysecciones[i];
+      }
+    }
   }
 
   getelementos(): void {
@@ -46,12 +71,7 @@ export class HomeListComponent {
     this.getclasificadores();
     this.getidentificadores();
 
-    if (this.seccions !== undefined) {
-      for (const seccion of this.seccions) {
-        // eslint-disable-next-line no-console
-        console.log('test');
-      }
-    }
+    this.ordenarJerarquias();
 
     /*    this.contadorElementos + 1;
     this.elementos?.push(new HomeListElement(this.contadorElementos, null, null, null, null, 1));*/
@@ -62,7 +82,9 @@ export class HomeListComponent {
   getcodigos(): void {
     this.codigoDESDEService.query().subscribe((res: HttpResponse<ICodigoDESDE[]>) => {
       this.codigoDESDES = res.body ?? [];
+      console.log(this.codigoDESDES);
     });
+    console.log(this.codigoDESDES);
   }
 
   getsecciones(): void {

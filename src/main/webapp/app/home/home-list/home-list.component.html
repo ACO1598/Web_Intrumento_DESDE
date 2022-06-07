@@ -1,8 +1,11 @@
 <tbody>
   <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
     <td>
-      <p>codigo: {{ codigo.id }}</p>
+      <p>codigo: {{ codigo.introduccion }}</p>
     </td>
+    <div *ngIf="codigo.seccions">
+      <p>Tiene secciones</p>
+    </div>
   </tr>
 </tbody>
 
