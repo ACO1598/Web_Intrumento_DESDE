@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Component, OnInit, Input } from '@angular/core';
 
 import { HomeListComponent } from 'app/home/home-list/home-list.component';
@@ -13,10 +14,11 @@ import { ISeccion, getSeccionIdentifier } from 'app/entities/seccion/seccion.mod
   styleUrls: ['./home-body.component.scss'],
 })
 export class HomeBodyComponent implements OnInit {
-  @Input() seccion!: ISeccion;
+  @Input() codigoelement!: HomeListComponent;
+  @Input() secciones!: HomeListComponent;
   constructor(protected codigoDESDEService: CodigoDESDEService, protected seccionService: SeccionService) {}
 
   ngOnInit(): void {
-    this.seccion.descripcion;
+    console.log(this.codigoelement);
   }
 }

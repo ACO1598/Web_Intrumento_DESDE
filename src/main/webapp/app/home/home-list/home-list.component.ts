@@ -24,6 +24,7 @@ export class HomeListComponent {
   seccions?: ISeccion[];
   clasificadores?: IClasificador[];
   identificadores?: IIdentificador[];
+  codigo?: ICodigoDESDE;
   /*  elementos?: IHomeListElement[];
   seccion?: ISeccion;
   contadorElementos = 1;*/
@@ -39,6 +40,11 @@ export class HomeListComponent {
     this.getelementos();
 
     console.log(this.codigoDESDES);
+  }
+
+  setcodigo(value: ICodigoDESDE, event: any): void {
+    this.codigo = value;
+    console.log(this.codigo);
   }
 
   ordenarJerarquias(): void {
@@ -67,14 +73,12 @@ export class HomeListComponent {
 
   getelementos(): void {
     this.getcodigos();
+    console.log(this.codigoDESDES);
     this.getsecciones();
     this.getclasificadores();
     this.getidentificadores();
 
     this.ordenarJerarquias();
-
-    /*    this.contadorElementos + 1;
-    this.elementos?.push(new HomeListElement(this.contadorElementos, null, null, null, null, 1));*/
   }
 
   // Estas funciones extraen las entidades de la base de datos y
@@ -82,9 +86,7 @@ export class HomeListComponent {
   getcodigos(): void {
     this.codigoDESDEService.query().subscribe((res: HttpResponse<ICodigoDESDE[]>) => {
       this.codigoDESDES = res.body ?? [];
-      console.log(this.codigoDESDES);
     });
-    console.log(this.codigoDESDES);
   }
 
   getsecciones(): void {

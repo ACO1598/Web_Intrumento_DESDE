@@ -1,35 +1,47 @@
-<tbody>
-  <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
-    <td>
-      <p>codigo: {{ codigo.introduccion }}</p>
-    </td>
-    <div *ngIf="codigo.seccions">
-      <p>Tiene secciones</p>
-    </div>
-  </tr>
-</tbody>
+<div class="row">
+  <div class="col-md-2">
+    <tbody>
+      <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
+        <td>
+          <p>codigo: {{ codigo.introduccion }}</p>
+          <button type="button" (click)="setcodigo(codigo, $event)">
+            {{ codigo.introduccion }}
+          </button>
+        </td>
+        <div *ngIf="codigo.seccions">
+          <p>Tiene secciones</p>
+        </div>
+      </tr>
+    </tbody>
 
-<tbody>
-  <tr *ngFor="let seccion of seccions" data-cy="entityTable">
-    <td>
-      <a [routerLink]="['/seccion', seccion.id, 'view']">{{ seccion.nombre }}</a>
-      <!--       <jhi-home-body> [seccion]= "seccion"; </jhi-home-body> -->
-    </td>
-  </tr>
-</tbody>
+    <tbody>
+      <tr *ngFor="let seccion of seccions" data-cy="entityTable">
+        <td>
+          <a [routerLink]="['/seccion', seccion.id, 'view']">{{ seccion.nombre }}</a>
+        </td>
+      </tr>
+    </tbody>
 
-<tbody>
-  <tr *ngFor="let clasificador of clasificadores" data-cy="entityTable">
-    <td>
-      <p>Clasificador: {{ clasificador.id }}</p>
-    </td>
-  </tr>
-</tbody>
+    <tbody>
+      <tr *ngFor="let clasificador of clasificadores" data-cy="entityTable">
+        <td>
+          <p>Clasificador: {{ clasificador.id }}</p>
+        </td>
+      </tr>
+    </tbody>
 
-<tbody>
-  <tr *ngFor="let identificador of identificadores" data-cy="entityTable">
-    <td>
-      <p>identificador: {{ identificador.nombre }}</p>
-    </td>
-  </tr>
-</tbody>
+    <tbody>
+      <tr *ngFor="let identificador of identificadores" data-cy="entityTable">
+        <td>
+          <p>identificador: {{ identificador.nombre }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </div>
+
+  <div class="col-md-10">
+    <!-- 		<div *ngIf=codigo !== undefined>
+			<jhi-home-body [codigoelement]="codigo"></jhi-home-body>
+		</div> -->
+  </div>
+</div>
