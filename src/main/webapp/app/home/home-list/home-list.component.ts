@@ -11,7 +11,6 @@ import { ClasificadorService } from 'app/entities/clasificador/service/clasifica
 import { IIdentificador } from 'app/entities/identificador/identificador.model';
 import { IdentificadorService } from 'app/entities/identificador/service/identificador.service';
 
-import { HomeBodyComponent } from './home-body/home-body.component';
 import { HomeListElement, IHomeListElement } from './home-list.model';
 
 @Component({
@@ -24,10 +23,7 @@ export class HomeListComponent {
   seccions?: ISeccion[];
   clasificadores?: IClasificador[];
   identificadores?: IIdentificador[];
-  codigo?: ICodigoDESDE;
-  /*  elementos?: IHomeListElement[];
-  seccion?: ISeccion;
-  contadorElementos = 1;*/
+  elemento: HomeListElement = new HomeListElement(1, 0);
 
   constructor(
     protected codigoDESDEService: CodigoDESDEService,
@@ -39,12 +35,16 @@ export class HomeListComponent {
   ngOnInit(): void {
     this.getelementos();
 
-    console.log(this.codigoDESDES);
+    console.log('Elemento: ', this.elemento);
   }
 
-  setcodigo(value: ICodigoDESDE, event: any): void {
-    this.codigo = value;
-    console.log(this.codigo);
+  setelemento(value: number, tipoelemento: number): void {
+    /*	if(value as ICodigoDESDE){
+		this.elemento = value;
+    	console.log(this.elemento);
+	}*/
+    this.elemento = new HomeListElement(value, tipoelemento);
+    console.warn('Id Elemento: ', this.elemento.idelemento);
   }
 
   ordenarJerarquias(): void {
@@ -73,7 +73,6 @@ export class HomeListComponent {
 
   getelementos(): void {
     this.getcodigos();
-    console.log(this.codigoDESDES);
     this.getsecciones();
     this.getclasificadores();
     this.getidentificadores();

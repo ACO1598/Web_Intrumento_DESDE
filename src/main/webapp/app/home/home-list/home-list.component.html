@@ -2,15 +2,9 @@
   <div class="col-md-2">
     <tbody>
       <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
-        <td>
-          <p>codigo: {{ codigo.introduccion }}</p>
-          <button type="button" (click)="setcodigo(codigo, $event)">
-            {{ codigo.introduccion }}
-          </button>
+        <td *ngIf="codigo.id">
+          <p>codigo: {{ codigo.id }}</p>
         </td>
-        <div *ngIf="codigo.seccions">
-          <p>Tiene secciones</p>
-        </div>
       </tr>
     </tbody>
 
@@ -40,8 +34,6 @@
   </div>
 
   <div class="col-md-10">
-    <!-- 		<div *ngIf=codigo !== undefined>
-			<jhi-home-body [codigoelement]="codigo"></jhi-home-body>
-		</div> -->
+    <!-- <router-outlet></router-outlet> -->
   </div>
 </div>
