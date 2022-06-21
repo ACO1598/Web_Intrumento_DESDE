@@ -5,10 +5,10 @@ import { SharedModule } from 'app/shared/shared.module';
 import { HOME_ROUTE } from './home.route';
 import { HomeComponent } from './home.component';
 import { HomeListComponent } from './home-list/home-list.component';
-import { HomeBodyComponent } from './home-list/home-body/home-body.component';
+import { HomeElementComponent } from './home-element/home-element.component';
 
 @NgModule({
   imports: [SharedModule, RouterModule.forChild([HOME_ROUTE])],
-  declarations: [HomeComponent, HomeListComponent, HomeBodyComponent],
+  declarations: [HomeComponent, HomeListComponent, HomeElementComponent],
 })
 export class HomeModule {}

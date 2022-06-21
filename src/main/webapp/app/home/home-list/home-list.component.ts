@@ -38,15 +38,6 @@ export class HomeListComponent {
     console.log('Elemento: ', this.elemento);
   }
 
-  setelemento(value: number, tipoelemento: number): void {
-    /*	if(value as ICodigoDESDE){
-		this.elemento = value;
-    	console.log(this.elemento);
-	}*/
-    this.elemento = new HomeListElement(value, tipoelemento);
-    console.warn('Id Elemento: ', this.elemento.idelemento);
-  }
-
   ordenarJerarquias(): void {
     if (this.seccions !== undefined && this.codigoDESDES !== undefined) {
       //let indexcodigos= new Array<number>(this.seccions.length);
