@@ -5,7 +5,7 @@ import { HttpResponse } from '@angular/common/http';
 import { ICodigoDESDE } from 'app/entities/codigo-desde/codigo-desde.model';
 import { CodigoDESDEService } from 'app/entities/codigo-desde/service/codigo-desde.service';
 import { SeccionService } from 'app/entities/seccion/service/seccion.service';
-import { ISeccion, getSeccionIdentifier } from 'app/entities/seccion/seccion.model';
+import { ISeccion } from 'app/entities/seccion/seccion.model';
 import { IClasificador } from 'app/entities/clasificador/clasificador.model';
 import { ClasificadorService } from 'app/entities/clasificador/service/clasificador.service';
 import { IIdentificador } from 'app/entities/identificador/identificador.model';
