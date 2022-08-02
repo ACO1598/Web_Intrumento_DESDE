@@ -7,7 +7,6 @@ import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/config/authority.constants';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
-import { HomeElementComponent } from 'app/home/home-element/home-element.component';
 
 const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 
@@ -32,10 +31,6 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
         },
         ...LAYOUT_ROUTES,
-        {
-          path: 'home-element/:id',
-          component: HomeElementComponent,
-        },
       ],
       { enableTracing: DEBUG_INFO_ENABLED }
     ),

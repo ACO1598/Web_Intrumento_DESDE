@@ -3,7 +3,7 @@ package es.loyola.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Properties specific to Index Test.
+ * Properties specific to Instrumento DESDE.
  * <p>
  * Properties are configured in the {@code application.yml} file.
  * See {@link tech.jhipster.config.JHipsterProperties} for a good example.

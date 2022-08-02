@@ -1,11 +1,11 @@
 <div>
   <h2 id="page-heading" data-cy="SeccionHeading">
-    <span jhiTranslate="indexTestApp.seccion.home.title">Seccions</span>
+    <span jhiTranslate="instrumentoDesdeApp.seccion.home.title">Seccions</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="indexTestApp.seccion.home.refreshListLabel">Refresh List</span>
+        <span jhiTranslate="instrumentoDesdeApp.seccion.home.refreshListLabel">Refresh List</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/seccion/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="indexTestApp.seccion.home.createLabel"> Create a new Seccion </span>
+        <span jhiTranslate="instrumentoDesdeApp.seccion.home.createLabel"> Create a new Seccion </span>
       </button>
     </div>
   </h2>
@@ -25,18 +25,23 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="seccions?.length === 0">
-    <span jhiTranslate="indexTestApp.seccion.home.notFound">No seccions found</span>
+    <span jhiTranslate="instrumentoDesdeApp.seccion.home.notFound">No seccions found</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="seccions && seccions.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
-        <tr>
-          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.seccion.nombre">Nombre</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.seccion.descripcion">Descripcion</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.seccion.codigo">Codigo</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.seccion.codigoDESDE">Codigo DESDE</span></th>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nombre">
+            <span jhiTranslate="instrumentoDesdeApp.seccion.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="descripcion">
+            <span jhiTranslate="instrumentoDesdeApp.seccion.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="codigoDESDE.id">
+            <span jhiTranslate="instrumentoDesdeApp.seccion.codigoDESDE">Codigo DESDE</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -47,10 +52,9 @@
           </td>
           <td>{{ seccion.nombre }}</td>
           <td>{{ seccion.descripcion }}</td>
-          <td>{{ seccion.codigo }}</td>
           <td>
             <div *ngIf="seccion.codigoDESDE">
-              <a [routerLink]="['/clasificador', seccion.codigoDESDE.id, 'view']">{{ seccion.codigoDESDE?.id }}</a>
+              <a [routerLink]="['/codigo-desde', seccion.codigoDESDE?.id, 'view']">{{ seccion.codigoDESDE?.id }}</a>
             </div>
           </td>
           <td class="text-right">
@@ -84,5 +88,23 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div *ngIf="seccions && seccions.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
   </div>
 </div>

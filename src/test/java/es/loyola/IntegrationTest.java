@@ -1,6 +1,6 @@
 package es.loyola;
 
-import es.loyola.IndexTestApp;
+import es.loyola.InstrumentoDesdeApp;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -12,6 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@SpringBootTest(classes = IndexTestApp.class)
+@SpringBootTest(classes = InstrumentoDesdeApp.class)
 public @interface IntegrationTest {
 }

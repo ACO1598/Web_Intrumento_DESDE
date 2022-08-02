@@ -23,7 +23,6 @@ describe('Seccion Service', () => {
       id: 0,
       nombre: 'AAAAAAA',
       descripcion: 'AAAAAAA',
-      codigo: 'AAAAAAA',
     };
   });
 
@@ -61,7 +60,6 @@ describe('Seccion Service', () => {
           id: 1,
           nombre: 'BBBBBB',
           descripcion: 'BBBBBB',
-          codigo: 'BBBBBB',
         },
         elemDefault
       );
@@ -79,7 +77,6 @@ describe('Seccion Service', () => {
       const patchObject = Object.assign(
         {
           nombre: 'BBBBBB',
-          codigo: 'BBBBBB',
         },
         new Seccion()
       );
@@ -101,7 +98,6 @@ describe('Seccion Service', () => {
           id: 1,
           nombre: 'BBBBBB',
           descripcion: 'BBBBBB',
-          codigo: 'BBBBBB',
         },
         elemDefault
       );
@@ -153,7 +149,7 @@ describe('Seccion Service', () => {
       });
 
       it('should add only unique Seccion to an array', () => {
-        const seccionArray: ISeccion[] = [{ id: 123 }, { id: 456 }, { id: 99224 }];
+        const seccionArray: ISeccion[] = [{ id: 123 }, { id: 456 }, { id: 56664 }];
         const seccionCollection: ISeccion[] = [{ id: 123 }];
         expectedResult = service.addSeccionToCollectionIfMissing(seccionCollection, ...seccionArray);
         expect(expectedResult).toHaveLength(3);

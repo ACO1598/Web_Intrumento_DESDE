@@ -4,7 +4,7 @@
       <h2
         id="jhi-codigo-desde-heading"
         data-cy="CodigoDESDECreateUpdateHeading"
-        jhiTranslate="indexTestApp.codigoDESDE.home.createOrEditLabel"
+        jhiTranslate="instrumentoDesdeApp.codigoDESDE.home.createOrEditLabel"
       >
         Create or edit a Codigo DESDE
       </h2>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.codigoDESDE.version" for="field_version">Version</label>
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.codigoDESDE.version" for="field_version">Version</label>
           <input type="text" class="form-control" name="version" id="field_version" data-cy="version" formControlName="version" />
           <div *ngIf="editForm.get('version')!.invalid && (editForm.get('version')!.dirty || editForm.get('version')!.touched)">
             <small
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.codigoDESDE.fecha" for="field_fecha">Fecha</label>
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.codigoDESDE.fecha" for="field_fecha">Fecha</label>
           <div class="input-group">
             <input
               id="field_fecha"
@@ -56,88 +56,90 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.codigoDESDE.introduccion" for="field_introduccion"
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.codigoDESDE.introduccion" for="field_introduccion"
             >Introduccion</label
           >
-          <textarea
+          <input
+            type="text"
             class="form-control"
             name="introduccion"
             id="field_introduccion"
             data-cy="introduccion"
             formControlName="introduccion"
-            rows="5"
-          ></textarea>
+          />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.codigoDESDE.terminologiaComun" for="field_terminologiaComun"
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.codigoDESDE.terminologiaComun" for="field_terminologiaComun"
             >Terminologia Comun</label
           >
-          <textarea
+          <input
             type="text"
             class="form-control"
             name="terminologiaComun"
             id="field_terminologiaComun"
             data-cy="terminologiaComun"
             formControlName="terminologiaComun"
-            rows="5"
-          ></textarea>
+          />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.codigoDESDE.importanciaContexto" for="field_importanciaContexto"
+          <label
+            class="form-control-label"
+            jhiTranslate="instrumentoDesdeApp.codigoDESDE.importanciaContexto"
+            for="field_importanciaContexto"
             >Importancia Contexto</label
           >
-          <textarea
+          <input
             type="text"
             class="form-control"
             name="importanciaContexto"
             id="field_importanciaContexto"
             data-cy="importanciaContexto"
             formControlName="importanciaContexto"
-            rows="5"
-          ></textarea>
+          />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.codigoDESDE.descripcion" for="field_descripcion">Descripcion</label>
-          <textarea
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.codigoDESDE.descripcion" for="field_descripcion"
+            >Descripcion</label
+          >
+          <input
             type="text"
             class="form-control"
             name="descripcion"
             id="field_descripcion"
             data-cy="descripcion"
             formControlName="descripcion"
-            rows="5"
-          ></textarea>
+          />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.codigoDESDE.poblacionObjetivo" for="field_poblacionObjetivo"
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.codigoDESDE.poblacionObjetivo" for="field_poblacionObjetivo"
             >Poblacion Objetivo</label
           >
-          <textarea
+          <input
             type="text"
             class="form-control"
             name="poblacionObjetivo"
             id="field_poblacionObjetivo"
             data-cy="poblacionObjetivo"
             formControlName="poblacionObjetivo"
-            rows="5"
-          ></textarea>
+          />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.codigoDESDE.referencia" for="field_referencia">Referencia</label>
-          <textarea
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.codigoDESDE.referencia" for="field_referencia"
+            >Referencia</label
+          >
+          <input
             type="text"
             class="form-control"
             name="referencia"
             id="field_referencia"
             data-cy="referencia"
             formControlName="referencia"
-            rows="5"
-          ></textarea>
+          />
         </div>
       </div>
 

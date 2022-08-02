@@ -25,6 +25,7 @@ export class IdentificadorUpdateComponent implements OnInit {
     nombre: [null, [Validators.required]],
     codigo: [null, [Validators.required]],
     descripcion: [],
+    ejemplos: [],
     clasificador: [],
     hijoI: [],
   });
@@ -91,6 +92,7 @@ export class IdentificadorUpdateComponent implements OnInit {
       nombre: identificador.nombre,
       codigo: identificador.codigo,
       descripcion: identificador.descripcion,
+      ejemplos: identificador.ejemplos,
       clasificador: identificador.clasificador,
       hijoI: identificador.hijoI,
     });
@@ -134,6 +136,7 @@ export class IdentificadorUpdateComponent implements OnInit {
       nombre: this.editForm.get(['nombre'])!.value,
       codigo: this.editForm.get(['codigo'])!.value,
       descripcion: this.editForm.get(['descripcion'])!.value,
+      ejemplos: this.editForm.get(['ejemplos'])!.value,
       clasificador: this.editForm.get(['clasificador'])!.value,
       hijoI: this.editForm.get(['hijoI'])!.value,
     };

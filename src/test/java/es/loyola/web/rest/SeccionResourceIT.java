@@ -35,9 +35,6 @@ class SeccionResourceIT {
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CODIGO = "AAAAAAAAAA";
-    private static final String UPDATED_CODIGO = "BBBBBBBBBB";
-
     private static final String ENTITY_API_URL = "/api/seccions";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -62,7 +59,7 @@ class SeccionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Seccion createEntity(EntityManager em) {
-        Seccion seccion = new Seccion().nombre(DEFAULT_NOMBRE).descripcion(DEFAULT_DESCRIPCION).codigo(DEFAULT_CODIGO);
+        Seccion seccion = new Seccion().nombre(DEFAULT_NOMBRE).descripcion(DEFAULT_DESCRIPCION);
         return seccion;
     }
 
@@ -73,7 +70,7 @@ class SeccionResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Seccion createUpdatedEntity(EntityManager em) {
-        Seccion seccion = new Seccion().nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION).codigo(UPDATED_CODIGO);
+        Seccion seccion = new Seccion().nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION);
         return seccion;
     }
 
@@ -97,7 +94,6 @@ class SeccionResourceIT {
         Seccion testSeccion = seccionList.get(seccionList.size() - 1);
         assertThat(testSeccion.getNombre()).isEqualTo(DEFAULT_NOMBRE);
         assertThat(testSeccion.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
-        assertThat(testSeccion.getCodigo()).isEqualTo(DEFAULT_CODIGO);
     }
 
     @Test
@@ -137,23 +133,6 @@ class SeccionResourceIT {
 
     @Test
     @Transactional
-    void checkCodigoIsRequired() throws Exception {
-        int databaseSizeBeforeTest = seccionRepository.findAll().size();
-        // set the field null
-        seccion.setCodigo(null);
-
-        // Create the Seccion, which fails.
-
-        restSeccionMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(seccion)))
-            .andExpect(status().isBadRequest());
-
-        List<Seccion> seccionList = seccionRepository.findAll();
-        assertThat(seccionList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     void getAllSeccions() throws Exception {
         // Initialize the database
         seccionRepository.saveAndFlush(seccion);
@@ -165,8 +144,7 @@ class SeccionResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(seccion.getId().intValue())))
             .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE)))
-            .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION)))
-            .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)));
+            .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION)));
     }
 
     @Test
@@ -182,8 +160,7 @@ class SeccionResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(seccion.getId().intValue()))
             .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE))
-            .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION))
-            .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO));
+            .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION));
     }
 
     @Test
@@ -205,7 +182,7 @@ class SeccionResourceIT {
         Seccion updatedSeccion = seccionRepository.findById(seccion.getId()).get();
         // Disconnect from session so that the updates on updatedSeccion are not directly saved in db
         em.detach(updatedSeccion);
-        updatedSeccion.nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION).codigo(UPDATED_CODIGO);
+        updatedSeccion.nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION);
 
         restSeccionMockMvc
             .perform(
@@ -221,7 +198,6 @@ class SeccionResourceIT {
         Seccion testSeccion = seccionList.get(seccionList.size() - 1);
         assertThat(testSeccion.getNombre()).isEqualTo(UPDATED_NOMBRE);
         assertThat(testSeccion.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
-        assertThat(testSeccion.getCodigo()).isEqualTo(UPDATED_CODIGO);
     }
 
     @Test
@@ -292,7 +268,7 @@ class SeccionResourceIT {
         Seccion partialUpdatedSeccion = new Seccion();
         partialUpdatedSeccion.setId(seccion.getId());
 
-        partialUpdatedSeccion.nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION).codigo(UPDATED_CODIGO);
+        partialUpdatedSeccion.nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION);
 
         restSeccionMockMvc
             .perform(
@@ -308,7 +284,6 @@ class SeccionResourceIT {
         Seccion testSeccion = seccionList.get(seccionList.size() - 1);
         assertThat(testSeccion.getNombre()).isEqualTo(UPDATED_NOMBRE);
         assertThat(testSeccion.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
-        assertThat(testSeccion.getCodigo()).isEqualTo(UPDATED_CODIGO);
     }
 
     @Test
@@ -323,7 +298,7 @@ class SeccionResourceIT {
         Seccion partialUpdatedSeccion = new Seccion();
         partialUpdatedSeccion.setId(seccion.getId());
 
-        partialUpdatedSeccion.nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION).codigo(UPDATED_CODIGO);
+        partialUpdatedSeccion.nombre(UPDATED_NOMBRE).descripcion(UPDATED_DESCRIPCION);
 
         restSeccionMockMvc
             .perform(
@@ -339,7 +314,6 @@ class SeccionResourceIT {
         Seccion testSeccion = seccionList.get(seccionList.size() - 1);
         assertThat(testSeccion.getNombre()).isEqualTo(UPDATED_NOMBRE);
         assertThat(testSeccion.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
-        assertThat(testSeccion.getCodigo()).isEqualTo(UPDATED_CODIGO);
     }
 
     @Test

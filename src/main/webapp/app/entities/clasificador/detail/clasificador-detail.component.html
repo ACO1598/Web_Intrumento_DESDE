@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-8">
     <div *ngIf="clasificador">
-      <h2 data-cy="clasificadorDetailsHeading"><span jhiTranslate="indexTestApp.clasificador.detail.title">Clasificador</span></h2>
+      <h2 data-cy="clasificadorDetailsHeading"><span jhiTranslate="instrumentoDesdeApp.clasificador.detail.title">Clasificador</span></h2>
 
       <hr />
 
@@ -11,29 +11,29 @@
 
       <dl class="row-md jh-entity-details">
         <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd class="col-8">
+        <dd>
           <span>{{ clasificador.id }}</span>
         </dd>
-        <dt><span jhiTranslate="indexTestApp.clasificador.nombre">Nombre</span></dt>
-        <dd class="col-8">
+        <dt><span jhiTranslate="instrumentoDesdeApp.clasificador.nombre">Nombre</span></dt>
+        <dd>
           <span>{{ clasificador.nombre }}</span>
         </dd>
-        <dt><span jhiTranslate="indexTestApp.clasificador.descripcion">Descripcion</span></dt>
-        <dd class="col-8">
+        <dt><span jhiTranslate="instrumentoDesdeApp.clasificador.descripcion">Descripcion</span></dt>
+        <dd>
           <span>{{ clasificador.descripcion }}</span>
         </dd>
-        <dt><span jhiTranslate="indexTestApp.clasificador.ejemplos">Ejemplos</span></dt>
-        <dd class="col-8">
+        <dt><span jhiTranslate="instrumentoDesdeApp.clasificador.ejemplos">Ejemplos</span></dt>
+        <dd>
           <span>{{ clasificador.ejemplos }}</span>
         </dd>
-        <dt><span jhiTranslate="indexTestApp.clasificador.seccion">Seccion</span></dt>
-        <dd class="col-8">
+        <dt><span jhiTranslate="instrumentoDesdeApp.clasificador.seccion">Seccion</span></dt>
+        <dd>
           <div *ngIf="clasificador.seccion">
             <a [routerLink]="['/seccion', clasificador.seccion?.id, 'view']">{{ clasificador.seccion?.id }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="indexTestApp.clasificador.hijoC">Hijo C</span></dt>
-        <dd class="col-8">
+        <dt><span jhiTranslate="instrumentoDesdeApp.clasificador.hijoC">Hijo C</span></dt>
+        <dd>
           <div *ngIf="clasificador.hijoC">
             <a [routerLink]="['/clasificador', clasificador.hijoC?.id, 'view']">{{ clasificador.hijoC?.id }}</a>
           </div>

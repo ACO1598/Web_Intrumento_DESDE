@@ -43,12 +43,12 @@
   ],
   "entityTableName": "clasificador",
   "dto": "no",
-  "pagination": "no",
+  "pagination": "pagination",
   "service": "no",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
-  "applications": ["indexTest"],
+  "applications": ["instrumentoDESDE"],
   "changelogDate": "20220208181955"
 }

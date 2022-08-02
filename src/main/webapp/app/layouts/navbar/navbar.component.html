@@ -1,7 +1,7 @@
 <nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-dark">
   <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
     <span class="logo-img"></span>
-    <span jhiTranslate="global.title" class="navbar-title">IndexTest</span>
+    <span jhiTranslate="global.title" class="navbar-title">InstrumentoDESDE</span>
     <span class="navbar-version">{{ version }}</span>
   </a>
   <a
@@ -27,9 +27,8 @@
         </a>
       </li>
       <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-      <!-- *ngSwitchCase="true" -->
       <li
-        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+        *ngSwitchCase="true"
         ngbDropdown
         class="nav-item dropdown pointer"
         display="dynamic"

@@ -23,7 +23,6 @@ export class SeccionUpdateComponent implements OnInit {
     id: [],
     nombre: [null, [Validators.required]],
     descripcion: [],
-    codigo: [null, [Validators.required]],
     codigoDESDE: [],
   });
 
@@ -84,14 +83,13 @@ export class SeccionUpdateComponent implements OnInit {
       id: seccion.id,
       nombre: seccion.nombre,
       descripcion: seccion.descripcion,
-      codigo: seccion.codigo,
       codigoDESDE: seccion.codigoDESDE,
     });
 
-    /*    this.codigoDESDESSharedCollection = this.codigoDESDEService.addCodigoDESDEToCollectionIfMissing(
+    this.codigoDESDESSharedCollection = this.codigoDESDEService.addCodigoDESDEToCollectionIfMissing(
       this.codigoDESDESSharedCollection,
       seccion.codigoDESDE
-    );*/
+    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -112,7 +110,6 @@ export class SeccionUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       nombre: this.editForm.get(['nombre'])!.value,
       descripcion: this.editForm.get(['descripcion'])!.value,
-      codigo: this.editForm.get(['codigo'])!.value,
       codigoDESDE: this.editForm.get(['codigoDESDE'])!.value,
     };
   }

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "index-test": {
+    "instrumento-desde": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -84,15 +84,15 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "index-test:build:development",
+            "browserTarget": "instrumento-desde:build:development",
             "port": 4200
           },
           "configurations": {
             "production": {
-              "browserTarget": "index-test:build:production"
+              "browserTarget": "instrumento-desde:build:production"
             },
             "development": {
-              "browserTarget": "index-test:build:development"
+              "browserTarget": "instrumento-desde:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -106,7 +106,7 @@
       }
     }
   },
-  "defaultProject": "index-test",
+  "defaultProject": "instrumento-desde",
   "cli": {
     "packageManager": "npm"
   }

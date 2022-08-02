@@ -1,11 +1,11 @@
-id;nombre;codigo;descripcion
-1;up;adaptador;haptic
-2;SCSI Azul Informática;Increible Mascotas;Apartamento Verde Queso
-3;Negro connecting Ladrillo;CSS;copying calculating
-4;wireless Distrito Mejorado;Bacon Algodón payment;Increible Analista Ariary
-5;servidor leverage;Granito Ergonómico Artesanal;Agente web Baleares
-6;calculating;benficios;Blanco
-7;transmitter envisioneer Aruba;Representante Avon;disintermediate Comunidad
-8;International;sinergia;Agente Kiribati mindshare
-9;red;Virtual;Home override Profundo
-10;Blanco;a alarm;Algodón digital
+id;nombre;codigo;descripcion;ejemplos
+1;up;adaptador;haptic;SCSI Azul Informática
+2;Increible Mascotas;Apartamento Verde Queso;Negro connecting Ladrillo;CSS
+3;copying calculating;wireless Distrito Mejorado;Bacon Algodón payment;Increible Analista Ariary
+4;servidor leverage;Granito Ergonómico Artesanal;Agente web Baleares;calculating
+5;benficios;Blanco;transmitter envisioneer Aruba;Representante Avon
+6;disintermediate Comunidad;International;sinergia;Agente Kiribati mindshare
+7;red;Virtual;Home override Profundo;Blanco
+8;a alarm;Algodón digital;Lado Argentina Infraestructura;Usabilidad
+9;generate Exclusivo hacking;Metal Cantabria transition;PNG Guapa;Plástico matrix Inversor
+10;bypass dinámica deposit;Bicicleta;Negro;calculating

@@ -1,8 +1,8 @@
 {
-  "name": "index-test",
+  "name": "instrumento-desde",
   "version": "0.0.1-SNAPSHOT",
   "private": true,
-  "description": "Description for indexTest",
+  "description": "Description for instrumentoDESDE",
   "license": "UNLICENSED",
   "scripts": {
     "app:start": "./mvnw",

@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   <div class="col-8">
     <div *ngIf="seccion">
-      <h2 data-cy="seccionDetailsHeading"><span jhiTranslate="indexTestApp.seccion.detail.title">Seccion</span></h2>
+      <h2 data-cy="seccionDetailsHeading"><span jhiTranslate="instrumentoDesdeApp.seccion.detail.title">Seccion</span></h2>
 
       <hr />
 
@@ -11,24 +11,22 @@
 
       <dl class="row-md jh-entity-details">
         <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd class="col-8">
+        <dd>
           <span>{{ seccion.id }}</span>
         </dd>
-        <dt><span jhiTranslate="indexTestApp.seccion.nombre">Nombre</span></dt>
-        <dd class="col-8">
+        <dt><span jhiTranslate="instrumentoDesdeApp.seccion.nombre">Nombre</span></dt>
+        <dd>
           <span>{{ seccion.nombre }}</span>
         </dd>
-        <dt><span jhiTranslate="indexTestApp.seccion.descripcion">Descripcion</span></dt>
-        <dd class="col-8">
+        <dt><span jhiTranslate="instrumentoDesdeApp.seccion.descripcion">Descripcion</span></dt>
+        <dd>
           <span>{{ seccion.descripcion }}</span>
         </dd>
-        <dt><span jhiTranslate="indexTestApp.seccion.codigo">Codigo</span></dt>
-        <dd class="col-8">
-          <span>{{ seccion.codigo }}</span>
-        </dd>
-        <dt><span jhiTranslate="indexTestApp.seccion.codigoDESDE">Codigo DESDE</span></dt>
-        <dd class="col-8">
-          <span>{{ seccion.codigoDESDE }}</span>
+        <dt><span jhiTranslate="instrumentoDesdeApp.seccion.codigoDESDE">Codigo DESDE</span></dt>
+        <dd>
+          <div *ngIf="seccion.codigoDESDE">
+            <a [routerLink]="['/codigo-desde', seccion.codigoDESDE?.id, 'view']">{{ seccion.codigoDESDE?.id }}</a>
+          </div>
         </dd>
       </dl>
 

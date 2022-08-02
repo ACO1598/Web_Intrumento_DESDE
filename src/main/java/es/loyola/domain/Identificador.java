@@ -35,6 +35,9 @@ public class Identificador implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name = "ejemplos")
+    private String ejemplos;
+
     @OneToMany(mappedBy = "hijoI")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "parentIS", "clasificador", "hijoI" }, allowSetters = true)
@@ -100,6 +103,19 @@ public class Identificador implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public String getEjemplos() {
+        return this.ejemplos;
+    }
+
+    public Identificador ejemplos(String ejemplos) {
+        this.setEjemplos(ejemplos);
+        return this;
+    }
+
+    public void setEjemplos(String ejemplos) {
+        this.ejemplos = ejemplos;
     }
 
     public Set<Identificador> getParentIS() {
@@ -186,6 +202,7 @@ public class Identificador implements Serializable {
             ", nombre='" + getNombre() + "'" +
             ", codigo='" + getCodigo() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
+            ", ejemplos='" + getEjemplos() + "'" +
             "}";
     }
 }

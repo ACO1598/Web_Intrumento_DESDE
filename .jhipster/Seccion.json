@@ -9,11 +9,6 @@
     {
       "fieldName": "descripcion",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "codigo",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
     }
   ],
   "relationships": [
@@ -32,12 +27,12 @@
   ],
   "entityTableName": "seccion",
   "dto": "no",
-  "pagination": "no",
+  "pagination": "pagination",
   "service": "no",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
-  "applications": ["indexTest"],
+  "applications": ["instrumentoDESDE"],
   "changelogDate": "20220208181953"
 }

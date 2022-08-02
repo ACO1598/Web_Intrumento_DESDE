@@ -13,10 +13,16 @@ import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
+import tech.jhipster.web.util.PaginationUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
@@ -131,9 +137,6 @@ public class SeccionResource {
                 if (seccion.getDescripcion() != null) {
                     existingSeccion.setDescripcion(seccion.getDescripcion());
                 }
-                if (seccion.getCodigo() != null) {
-                    existingSeccion.setCodigo(seccion.getCodigo());
-                }
 
                 return existingSeccion;
             })
@@ -148,12 +151,15 @@ public class SeccionResource {
     /**
      * {@code GET  /seccions} : get all the seccions.
      *
+     * @param pageable the pagination information.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of seccions in body.
      */
     @GetMapping("/seccions")
-    public List<Seccion> getAllSeccions() {
-        log.debug("REST request to get all Seccions");
-        return seccionRepository.findAll();
+    public ResponseEntity<List<Seccion>> getAllSeccions(Pageable pageable) {
+        log.debug("REST request to get a page of Seccions");
+        Page<Seccion> page = seccionRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
     /**

@@ -20,22 +20,22 @@
             <column name="fecha" type="date">
                 <constraints nullable="false" />
             </column>
-            <column name="introduccion" type="varchar(255)">
+            <column name="introduccion" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="terminologia_comun" type="varchar(255)">
+            <column name="terminologia_comun" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="importancia_contexto" type="varchar(255)">
+            <column name="importancia_contexto" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="descripcion" type="varchar(255)">
+            <column name="descripcion" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="poblacion_objetivo" type="varchar(255)">
+            <column name="poblacion_objetivo" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="referencia" type="varchar(255)">
+            <column name="referencia" type="text">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

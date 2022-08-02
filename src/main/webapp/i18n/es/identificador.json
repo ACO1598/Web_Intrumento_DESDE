@@ -1,5 +1,5 @@
 {
-  "indexTestApp": {
+  "instrumentoDesdeApp": {
     "identificador": {
       "home": {
         "title": "Identificadors",
@@ -21,6 +21,7 @@
       "nombre": "Nombre",
       "codigo": "Codigo",
       "descripcion": "Descripcion",
+      "ejemplos": "Ejemplos",
       "parentI": "Parent I",
       "clasificador": "Clasificador",
       "hijoI": "Hijo I"

@@ -5,7 +5,6 @@ export interface ISeccion {
   id?: number;
   nombre?: string;
   descripcion?: string | null;
-  codigo?: string;
   clasificadors?: IClasificador[] | null;
   codigoDESDE?: ICodigoDESDE | null;
 }
@@ -15,7 +14,6 @@ export class Seccion implements ISeccion {
     public id?: number,
     public nombre?: string,
     public descripcion?: string | null,
-    public codigo?: string,
     public clasificadors?: IClasificador[] | null,
     public codigoDESDE?: ICodigoDESDE | null
   ) {}

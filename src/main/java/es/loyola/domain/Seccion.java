@@ -31,10 +31,6 @@ public class Seccion implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @NotNull
-    @Column(name = "codigo", nullable = false)
-    private String codigo;
-
     @OneToMany(mappedBy = "seccion")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "identificadors", "parentCS", "seccion", "hijoC" }, allowSetters = true)
@@ -83,19 +79,6 @@ public class Seccion implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getCodigo() {
-        return this.codigo;
-    }
-
-    public Seccion codigo(String codigo) {
-        this.setCodigo(codigo);
-        return this;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public Set<Clasificador> getClasificadors() {
@@ -168,7 +151,6 @@ public class Seccion implements Serializable {
             "id=" + getId() +
             ", nombre='" + getNombre() + "'" +
             ", descripcion='" + getDescripcion() + "'" +
-            ", codigo='" + getCodigo() + "'" +
             "}";
     }
 }

@@ -1,11 +1,11 @@
 <div>
   <h2 id="page-heading" data-cy="ClasificadorHeading">
-    <span jhiTranslate="indexTestApp.clasificador.home.title">Clasificadors</span>
+    <span jhiTranslate="instrumentoDesdeApp.clasificador.home.title">Clasificadors</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="indexTestApp.clasificador.home.refreshListLabel">Refresh List</span>
+        <span jhiTranslate="instrumentoDesdeApp.clasificador.home.refreshListLabel">Refresh List</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/clasificador/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="indexTestApp.clasificador.home.createLabel"> Create a new Clasificador </span>
+        <span jhiTranslate="instrumentoDesdeApp.clasificador.home.createLabel"> Create a new Clasificador </span>
       </button>
     </div>
   </h2>
@@ -25,19 +25,29 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="clasificadors?.length === 0">
-    <span jhiTranslate="indexTestApp.clasificador.home.notFound">No clasificadors found</span>
+    <span jhiTranslate="instrumentoDesdeApp.clasificador.home.notFound">No clasificadors found</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="clasificadors && clasificadors.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
-        <tr>
-          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.nombre">Nombre</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.descripcion">Descripcion</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.ejemplos">Ejemplos</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.seccion">Seccion</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.clasificador.hijoC">Hijo C</span></th>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nombre">
+            <span jhiTranslate="instrumentoDesdeApp.clasificador.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="descripcion">
+            <span jhiTranslate="instrumentoDesdeApp.clasificador.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ejemplos">
+            <span jhiTranslate="instrumentoDesdeApp.clasificador.ejemplos">Ejemplos</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="seccion.id">
+            <span jhiTranslate="instrumentoDesdeApp.clasificador.seccion">Seccion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="hijoC.id">
+            <span jhiTranslate="instrumentoDesdeApp.clasificador.hijoC">Hijo C</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -49,8 +59,16 @@
           <td>{{ clasificador.nombre }}</td>
           <td>{{ clasificador.descripcion }}</td>
           <td>{{ clasificador.ejemplos }}</td>
-          <td>{{ clasificador.parentCS }}</td>
-          <td>{{ clasificador.seccion }}</td>
+          <td>
+            <div *ngIf="clasificador.seccion">
+              <a [routerLink]="['/seccion', clasificador.seccion?.id, 'view']">{{ clasificador.seccion?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="clasificador.hijoC">
+              <a [routerLink]="['/clasificador', clasificador.hijoC?.id, 'view']">{{ clasificador.hijoC?.id }}</a>
+            </div>
+          </td>
           <td class="text-right">
             <div class="btn-group">
               <button
@@ -82,5 +100,23 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div *ngIf="clasificadors && clasificadors.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
   </div>
 </div>

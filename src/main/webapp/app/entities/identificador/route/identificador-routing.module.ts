@@ -11,6 +11,9 @@ const identificadorRoute: Routes = [
   {
     path: '',
     component: IdentificadorComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
     canActivate: [UserRouteAccessService],
   },
   {

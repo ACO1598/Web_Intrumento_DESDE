@@ -14,6 +14,10 @@
     {
       "fieldName": "descripcion",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "ejemplos",
+      "fieldType": "String"
     }
   ],
   "relationships": [
@@ -38,12 +42,12 @@
   ],
   "entityTableName": "identificador",
   "dto": "no",
-  "pagination": "no",
+  "pagination": "pagination",
   "service": "no",
   "jpaMetamodelFiltering": false,
   "fluentMethods": true,
   "readOnly": false,
   "embedded": false,
-  "applications": ["indexTest"],
+  "applications": ["instrumentoDESDE"],
   "changelogDate": "20220208181954"
 }

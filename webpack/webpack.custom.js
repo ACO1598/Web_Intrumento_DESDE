@@ -42,7 +42,7 @@ module.exports = async (config, options, targetOptions) => {
         extensions: ['js', 'ts'],
       }),
       new WebpackNotifierPlugin({
-        title: 'Index Test',
+        title: 'Instrumento DESDE',
         contentImage: path.join(__dirname, 'logo-jhipster.png'),
       })
     );

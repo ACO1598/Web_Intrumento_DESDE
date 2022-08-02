@@ -1,11 +1,11 @@
 <div>
   <h2 id="page-heading" data-cy="CodigoDESDEHeading">
-    <span jhiTranslate="indexTestApp.codigoDESDE.home.title">Codigo DESDE</span>
+    <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.home.title">Codigo DESDES</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="indexTestApp.codigoDESDE.home.refreshListLabel">Refresh List</span>
+        <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.home.refreshListLabel">Refresh List</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/codigo-desde/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="indexTestApp.codigoDESDE.home.createLabel"> Create a new Codigo DESDE </span>
+        <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.home.createLabel"> Create a new Codigo DESDE </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="codigoDESDES?.length === 0">
-    <span jhiTranslate="indexTestApp.codigoDESDE.home.notFound">No codigoDESDES found</span>
+    <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.home.notFound">No codigoDESDES found</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="codigoDESDES && codigoDESDES.length > 0">
@@ -34,28 +34,29 @@
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="version">
-            <span jhiTranslate="indexTestApp.codigoDESDE.version">Version</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.version">Version</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="fecha">
-            <span jhiTranslate="indexTestApp.codigoDESDE.fecha">Fecha</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.fecha">Fecha</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="introduccion">
-            <span jhiTranslate="indexTestApp.codigoDESDE.introduccion">Introduccion</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.introduccion">Introduccion</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="terminologiaComun">
-            <span jhiTranslate="indexTestApp.codigoDESDE.terminologiaComun">Terminologia Comun</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.terminologiaComun">Terminologia Comun</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="importanciaContexto">
-            <span jhiTranslate="indexTestApp.codigoDESDE.importanciaContexto">Importancia Contexto</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.importanciaContexto">Importancia Contexto</span>
+            <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="descripcion">
-            <span jhiTranslate="indexTestApp.codigoDESDE.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="poblacionObjetivo">
-            <span jhiTranslate="indexTestApp.codigoDESDE.poblacionObjetivo">Poblacion Objetivo</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.poblacionObjetivo">Poblacion Objetivo</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="referencia">
-            <span jhiTranslate="indexTestApp.codigoDESDE.referencia">Referencia</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="instrumentoDesdeApp.codigoDESDE.referencia">Referencia</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -73,7 +74,6 @@
           <td>{{ codigoDESDE.descripcion }}</td>
           <td>{{ codigoDESDE.poblacionObjetivo }}</td>
           <td>{{ codigoDESDE.referencia }}</td>
-          <td *ngFor="let seccion of codigoDESDE.seccions">{{ seccion.id }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button

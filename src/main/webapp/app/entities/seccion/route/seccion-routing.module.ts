@@ -11,6 +11,9 @@ const seccionRoute: Routes = [
   {
     path: '',
     component: SeccionComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
     canActivate: [UserRouteAccessService],
   },
   {

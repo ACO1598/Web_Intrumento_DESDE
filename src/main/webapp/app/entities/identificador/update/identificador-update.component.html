@@ -4,7 +4,7 @@
       <h2
         id="jhi-identificador-heading"
         data-cy="IdentificadorCreateUpdateHeading"
-        jhiTranslate="indexTestApp.identificador.home.createOrEditLabel"
+        jhiTranslate="instrumentoDesdeApp.identificador.home.createOrEditLabel"
       >
         Create or edit a Identificador
       </h2>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.identificador.nombre" for="field_nombre">Nombre</label>
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.identificador.nombre" for="field_nombre">Nombre</label>
           <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
           <div *ngIf="editForm.get('nombre')!.invalid && (editForm.get('nombre')!.dirty || editForm.get('nombre')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('nombre')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.identificador.codigo" for="field_codigo">Codigo</label>
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.identificador.codigo" for="field_codigo">Codigo</label>
           <input type="text" class="form-control" name="codigo" id="field_codigo" data-cy="codigo" formControlName="codigo" />
           <div *ngIf="editForm.get('codigo')!.invalid && (editForm.get('codigo')!.dirty || editForm.get('codigo')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('codigo')?.errors?.required" jhiTranslate="entity.validation.required">
@@ -38,21 +38,26 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.identificador.descripcion" for="field_descripcion"
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.identificador.descripcion" for="field_descripcion"
             >Descripcion</label
           >
-          <textarea
+          <input
+            type="text"
             class="form-control"
             name="descripcion"
             id="field_descripcion"
             data-cy="descripcion"
             formControlName="descripcion"
-            rows="5"
-          ></textarea>
+          />
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.identificador.clasificador" for="field_clasificador"
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.identificador.ejemplos" for="field_ejemplos">Ejemplos</label>
+          <input type="text" class="form-control" name="ejemplos" id="field_ejemplos" data-cy="ejemplos" formControlName="ejemplos" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.identificador.clasificador" for="field_clasificador"
             >Clasificador</label
           >
           <select class="form-control" id="field_clasificador" data-cy="clasificador" name="clasificador" formControlName="clasificador">
@@ -69,7 +74,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-control-label" jhiTranslate="indexTestApp.identificador.hijoI" for="field_hijoI">Hijo I</label>
+          <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.identificador.hijoI" for="field_hijoI">Hijo I</label>
           <select class="form-control" id="field_hijoI" data-cy="hijoI" name="hijoI" formControlName="hijoI">
             <option [ngValue]="null"></option>
             <option

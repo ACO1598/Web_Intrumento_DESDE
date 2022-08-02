@@ -38,6 +38,9 @@ class IdentificadorResourceIT {
     private static final String DEFAULT_DESCRIPCION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPCION = "BBBBBBBBBB";
 
+    private static final String DEFAULT_EJEMPLOS = "AAAAAAAAAA";
+    private static final String UPDATED_EJEMPLOS = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/identificadors";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -62,7 +65,11 @@ class IdentificadorResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Identificador createEntity(EntityManager em) {
-        Identificador identificador = new Identificador().nombre(DEFAULT_NOMBRE).codigo(DEFAULT_CODIGO).descripcion(DEFAULT_DESCRIPCION);
+        Identificador identificador = new Identificador()
+            .nombre(DEFAULT_NOMBRE)
+            .codigo(DEFAULT_CODIGO)
+            .descripcion(DEFAULT_DESCRIPCION)
+            .ejemplos(DEFAULT_EJEMPLOS);
         return identificador;
     }
 
@@ -73,7 +80,11 @@ class IdentificadorResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Identificador createUpdatedEntity(EntityManager em) {
-        Identificador identificador = new Identificador().nombre(UPDATED_NOMBRE).codigo(UPDATED_CODIGO).descripcion(UPDATED_DESCRIPCION);
+        Identificador identificador = new Identificador()
+            .nombre(UPDATED_NOMBRE)
+            .codigo(UPDATED_CODIGO)
+            .descripcion(UPDATED_DESCRIPCION)
+            .ejemplos(UPDATED_EJEMPLOS);
         return identificador;
     }
 
@@ -98,6 +109,7 @@ class IdentificadorResourceIT {
         assertThat(testIdentificador.getNombre()).isEqualTo(DEFAULT_NOMBRE);
         assertThat(testIdentificador.getCodigo()).isEqualTo(DEFAULT_CODIGO);
         assertThat(testIdentificador.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
+        assertThat(testIdentificador.getEjemplos()).isEqualTo(DEFAULT_EJEMPLOS);
     }
 
     @Test
@@ -166,7 +178,8 @@ class IdentificadorResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(identificador.getId().intValue())))
             .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE)))
             .andExpect(jsonPath("$.[*].codigo").value(hasItem(DEFAULT_CODIGO)))
-            .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION)));
+            .andExpect(jsonPath("$.[*].descripcion").value(hasItem(DEFAULT_DESCRIPCION)))
+            .andExpect(jsonPath("$.[*].ejemplos").value(hasItem(DEFAULT_EJEMPLOS)));
     }
 
     @Test
@@ -183,7 +196,8 @@ class IdentificadorResourceIT {
             .andExpect(jsonPath("$.id").value(identificador.getId().intValue()))
             .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE))
             .andExpect(jsonPath("$.codigo").value(DEFAULT_CODIGO))
-            .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION));
+            .andExpect(jsonPath("$.descripcion").value(DEFAULT_DESCRIPCION))
+            .andExpect(jsonPath("$.ejemplos").value(DEFAULT_EJEMPLOS));
     }
 
     @Test
@@ -205,7 +219,7 @@ class IdentificadorResourceIT {
         Identificador updatedIdentificador = identificadorRepository.findById(identificador.getId()).get();
         // Disconnect from session so that the updates on updatedIdentificador are not directly saved in db
         em.detach(updatedIdentificador);
-        updatedIdentificador.nombre(UPDATED_NOMBRE).codigo(UPDATED_CODIGO).descripcion(UPDATED_DESCRIPCION);
+        updatedIdentificador.nombre(UPDATED_NOMBRE).codigo(UPDATED_CODIGO).descripcion(UPDATED_DESCRIPCION).ejemplos(UPDATED_EJEMPLOS);
 
         restIdentificadorMockMvc
             .perform(
@@ -222,6 +236,7 @@ class IdentificadorResourceIT {
         assertThat(testIdentificador.getNombre()).isEqualTo(UPDATED_NOMBRE);
         assertThat(testIdentificador.getCodigo()).isEqualTo(UPDATED_CODIGO);
         assertThat(testIdentificador.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
+        assertThat(testIdentificador.getEjemplos()).isEqualTo(UPDATED_EJEMPLOS);
     }
 
     @Test
@@ -307,6 +322,7 @@ class IdentificadorResourceIT {
         assertThat(testIdentificador.getNombre()).isEqualTo(DEFAULT_NOMBRE);
         assertThat(testIdentificador.getCodigo()).isEqualTo(DEFAULT_CODIGO);
         assertThat(testIdentificador.getDescripcion()).isEqualTo(DEFAULT_DESCRIPCION);
+        assertThat(testIdentificador.getEjemplos()).isEqualTo(DEFAULT_EJEMPLOS);
     }
 
     @Test
@@ -321,7 +337,11 @@ class IdentificadorResourceIT {
         Identificador partialUpdatedIdentificador = new Identificador();
         partialUpdatedIdentificador.setId(identificador.getId());
 
-        partialUpdatedIdentificador.nombre(UPDATED_NOMBRE).codigo(UPDATED_CODIGO).descripcion(UPDATED_DESCRIPCION);
+        partialUpdatedIdentificador
+            .nombre(UPDATED_NOMBRE)
+            .codigo(UPDATED_CODIGO)
+            .descripcion(UPDATED_DESCRIPCION)
+            .ejemplos(UPDATED_EJEMPLOS);
 
         restIdentificadorMockMvc
             .perform(
@@ -338,6 +358,7 @@ class IdentificadorResourceIT {
         assertThat(testIdentificador.getNombre()).isEqualTo(UPDATED_NOMBRE);
         assertThat(testIdentificador.getCodigo()).isEqualTo(UPDATED_CODIGO);
         assertThat(testIdentificador.getDescripcion()).isEqualTo(UPDATED_DESCRIPCION);
+        assertThat(testIdentificador.getEjemplos()).isEqualTo(UPDATED_EJEMPLOS);
     }
 
     @Test

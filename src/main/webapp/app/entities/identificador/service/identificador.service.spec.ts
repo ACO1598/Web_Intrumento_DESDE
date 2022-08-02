@@ -24,6 +24,7 @@ describe('Identificador Service', () => {
       nombre: 'AAAAAAA',
       codigo: 'AAAAAAA',
       descripcion: 'AAAAAAA',
+      ejemplos: 'AAAAAAA',
     };
   });
 
@@ -62,6 +63,7 @@ describe('Identificador Service', () => {
           nombre: 'BBBBBB',
           codigo: 'BBBBBB',
           descripcion: 'BBBBBB',
+          ejemplos: 'BBBBBB',
         },
         elemDefault
       );
@@ -79,6 +81,7 @@ describe('Identificador Service', () => {
       const patchObject = Object.assign(
         {
           codigo: 'BBBBBB',
+          ejemplos: 'BBBBBB',
         },
         new Identificador()
       );
@@ -101,6 +104,7 @@ describe('Identificador Service', () => {
           nombre: 'BBBBBB',
           codigo: 'BBBBBB',
           descripcion: 'BBBBBB',
+          ejemplos: 'BBBBBB',
         },
         elemDefault
       );
@@ -152,7 +156,7 @@ describe('Identificador Service', () => {
       });
 
       it('should add only unique Identificador to an array', () => {
-        const identificadorArray: IIdentificador[] = [{ id: 123 }, { id: 456 }, { id: 93743 }];
+        const identificadorArray: IIdentificador[] = [{ id: 123 }, { id: 456 }, { id: 71117 }];
         const identificadorCollection: IIdentificador[] = [{ id: 123 }];
         expectedResult = service.addIdentificadorToCollectionIfMissing(identificadorCollection, ...identificadorArray);
         expect(expectedResult).toHaveLength(3);

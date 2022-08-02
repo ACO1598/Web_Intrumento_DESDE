@@ -11,6 +11,9 @@ const clasificadorRoute: Routes = [
   {
     path: '',
     component: ClasificadorComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
     canActivate: [UserRouteAccessService],
   },
   {

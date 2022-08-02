@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import { HomeElementComponent } from './home-element/home-element.component';
 
 export const HOME_ROUTE: Route = {
   path: '',

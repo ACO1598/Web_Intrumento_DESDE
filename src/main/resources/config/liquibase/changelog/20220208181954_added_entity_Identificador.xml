@@ -20,7 +20,10 @@
             <column name="codigo" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="descripcion" type="varchar(255)">
+            <column name="descripcion" type="text">
+                <constraints nullable="true" />
+            </column>
+            <column name="ejemplos" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="clasificador_id" type="bigint">
@@ -53,6 +56,7 @@
             <column name="nombre" type="string"/>
             <column name="codigo" type="string"/>
             <column name="descripcion" type="string"/>
+            <column name="ejemplos" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

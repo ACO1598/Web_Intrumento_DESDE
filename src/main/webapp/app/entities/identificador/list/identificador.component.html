@@ -1,11 +1,11 @@
 <div>
   <h2 id="page-heading" data-cy="IdentificadorHeading">
-    <span jhiTranslate="indexTestApp.identificador.home.title">Identificadors</span>
+    <span jhiTranslate="instrumentoDesdeApp.identificador.home.title">Identificadors</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="indexTestApp.identificador.home.refreshListLabel">Refresh List</span>
+        <span jhiTranslate="instrumentoDesdeApp.identificador.home.refreshListLabel">Refresh List</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/identificador/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="indexTestApp.identificador.home.createLabel"> Create a new Identificador </span>
+        <span jhiTranslate="instrumentoDesdeApp.identificador.home.createLabel"> Create a new Identificador </span>
       </button>
     </div>
   </h2>
@@ -25,19 +25,32 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="identificadors?.length === 0">
-    <span jhiTranslate="indexTestApp.identificador.home.notFound">No identificadors found</span>
+    <span jhiTranslate="instrumentoDesdeApp.identificador.home.notFound">No identificadors found</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="identificadors && identificadors.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
-        <tr>
-          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.identificador.nombre">Nombre</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.identificador.codigo">Codigo</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.identificador.descripcion">Descripcion</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.identificador.clasificador">Clasificador</span></th>
-          <th scope="col"><span jhiTranslate="indexTestApp.identificador.hijoI">Hijo I</span></th>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nombre">
+            <span jhiTranslate="instrumentoDesdeApp.identificador.nombre">Nombre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="codigo">
+            <span jhiTranslate="instrumentoDesdeApp.identificador.codigo">Codigo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="descripcion">
+            <span jhiTranslate="instrumentoDesdeApp.identificador.descripcion">Descripcion</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ejemplos">
+            <span jhiTranslate="instrumentoDesdeApp.identificador.ejemplos">Ejemplos</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="clasificador.id">
+            <span jhiTranslate="instrumentoDesdeApp.identificador.clasificador">Clasificador</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="hijoI.id">
+            <span jhiTranslate="instrumentoDesdeApp.identificador.hijoI">Hijo I</span> <fa-icon icon="sort"></fa-icon>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -49,6 +62,7 @@
           <td>{{ identificador.nombre }}</td>
           <td>{{ identificador.codigo }}</td>
           <td>{{ identificador.descripcion }}</td>
+          <td>{{ identificador.ejemplos }}</td>
           <td>
             <div *ngIf="identificador.clasificador">
               <a [routerLink]="['/clasificador', identificador.clasificador?.id, 'view']">{{ identificador.clasificador?.id }}</a>
@@ -90,5 +104,23 @@
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div *ngIf="identificadors && identificadors.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
   </div>
 </div>

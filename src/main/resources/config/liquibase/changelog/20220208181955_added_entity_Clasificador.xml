@@ -17,10 +17,10 @@
             <column name="nombre" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="descripcion" type="varchar(255)">
+            <column name="descripcion" type="text">
                 <constraints nullable="true" />
             </column>
-            <column name="ejemplos" type="varchar(255)">
+            <column name="ejemplos" type="text">
                 <constraints nullable="true" />
             </column>
             <column name="seccion_id" type="bigint">
