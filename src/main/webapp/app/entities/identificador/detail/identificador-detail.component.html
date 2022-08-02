@@ -11,29 +11,29 @@
 
       <dl class="row-md jh-entity-details">
         <dt><span jhiTranslate="global.field.id">ID</span></dt>
-        <dd>
+        <dd class="col-8">
           <span>{{ identificador.id }}</span>
         </dd>
         <dt><span jhiTranslate="indexTestApp.identificador.nombre">Nombre</span></dt>
-        <dd>
+        <dd class="col-8">
           <span>{{ identificador.nombre }}</span>
         </dd>
         <dt><span jhiTranslate="indexTestApp.identificador.codigo">Codigo</span></dt>
-        <dd>
+        <dd class="col-8">
           <span>{{ identificador.codigo }}</span>
         </dd>
         <dt><span jhiTranslate="indexTestApp.identificador.descripcion">Descripcion</span></dt>
-        <dd>
+        <dd class="col-8">
           <span>{{ identificador.descripcion }}</span>
         </dd>
         <dt><span jhiTranslate="indexTestApp.identificador.clasificador">Clasificador</span></dt>
-        <dd>
+        <dd class="col-8">
           <div *ngIf="identificador.clasificador">
             <a [routerLink]="['/clasificador', identificador.clasificador?.id, 'view']">{{ identificador.clasificador?.id }}</a>
           </div>
         </dd>
         <dt><span jhiTranslate="indexTestApp.identificador.hijoI">Hijo I</span></dt>
-        <dd>
+        <dd class="col-8">
           <div *ngIf="identificador.hijoI">
             <a [routerLink]="['/identificador', identificador.hijoI?.id, 'view']">{{ identificador.hijoI?.id }}</a>
           </div>
