@@ -31,19 +31,26 @@
           <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.clasificador.descripcion" for="field_descripcion"
             >Descripcion</label
           >
-          <input
-            type="text"
+          <textarea
             class="form-control"
             name="descripcion"
             id="field_descripcion"
             data-cy="descripcion"
             formControlName="descripcion"
-          />
+            rows="5"
+          ></textarea>
         </div>
 
         <div class="form-group">
           <label class="form-control-label" jhiTranslate="instrumentoDesdeApp.clasificador.ejemplos" for="field_ejemplos">Ejemplos</label>
-          <input type="text" class="form-control" name="ejemplos" id="field_ejemplos" data-cy="ejemplos" formControlName="ejemplos" />
+          <textarea
+            class="form-control"
+            name="ejemplos"
+            id="field_ejemplos"
+            data-cy="ejemplos"
+            formControlName="ejemplos"
+            rows="5"
+          ></textarea>
         </div>
 
         <div class="form-group">
