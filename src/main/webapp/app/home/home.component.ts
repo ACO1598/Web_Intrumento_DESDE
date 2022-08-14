@@ -6,6 +6,15 @@ import { takeUntil } from 'rxjs/operators';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 
+import { ICodigoDESDE } from 'app/entities/codigo-desde/codigo-desde.model';
+import { CodigoDESDEService } from 'app/entities/codigo-desde/service/codigo-desde.service';
+import { SeccionService } from 'app/entities/seccion/service/seccion.service';
+import { ISeccion } from 'app/entities/seccion/seccion.model';
+import { IClasificador } from 'app/entities/clasificador/clasificador.model';
+import { ClasificadorService } from 'app/entities/clasificador/service/clasificador.service';
+import { IIdentificador } from 'app/entities/identificador/identificador.model';
+import { IdentificadorService } from 'app/entities/identificador/service/identificador.service';
+
 @Component({
   selector: 'jhi-home',
   templateUrl: './home.component.html',
@@ -13,10 +22,21 @@ import { Account } from 'app/core/auth/account.model';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
+  codigoDESDES?: ICodigoDESDE[];
+  seccions?: ISeccion[];
+  clasificadores?: IClasificador[];
+  identificadores?: IIdentificador[];
 
   private readonly destroy$ = new Subject<void>();
 
-  constructor(private accountService: AccountService, private router: Router) {}
+  constructor(
+    private accountService: AccountService,
+    private router: Router,
+    protected codigoDESDEService: CodigoDESDEService,
+    protected seccionService: SeccionService,
+    protected clasificadorService: ClasificadorService,
+    protected identificadorService: IdentificadorService
+  ) {}
 
   ngOnInit(): void {
     this.accountService

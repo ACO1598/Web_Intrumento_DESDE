@@ -1,0 +1,17 @@
+<div *ngIf="seccion">
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <h1>Testing</h1>
+
+  <h2>{{ seccion.nombre }}</h2>
+  <dl class="row-md jh-entity-details">
+    <dt>
+      <span jhiTranslate="instrumentoDesdeApp.seccion.descripcion">Descripcion</span>
+    </dt>
+    <dd>
+      <span>{{ seccion.descripcion }}</span>
+    </dd>
+  </dl>
+</div>
