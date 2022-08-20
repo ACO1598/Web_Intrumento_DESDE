@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -14,13 +14,15 @@ import { IClasificador } from 'app/entities/clasificador/clasificador.model';
 import { ClasificadorService } from 'app/entities/clasificador/service/clasificador.service';
 import { IIdentificador } from 'app/entities/identificador/identificador.model';
 import { IdentificadorService } from 'app/entities/identificador/service/identificador.service';
+import { HomeSeccionComponent } from './home-seccion/home-seccion.component';
+import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
 
 @Component({
   selector: 'jhi-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   account: Account | null = null;
   codigoDESDES?: ICodigoDESDE[];
   seccions?: ISeccion[];
@@ -28,6 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   identificadores?: IIdentificador[];
 
   private readonly destroy$ = new Subject<void>();
+  @ViewChild(DynamicComponentDirective) dynamic!: DynamicComponentDirective;
 
   constructor(
     private accountService: AccountService,
@@ -52,5 +55,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  ngAfterViewInit(): void {
+    this.generateComponent();
+  }
+
+  generateComponent(): void {
+    const viewContainerRef = this.dynamic.viewContainerRef;
+
+    const componentRef = viewContainerRef.createComponent<any>(HomeSeccionComponent);
   }
 }
