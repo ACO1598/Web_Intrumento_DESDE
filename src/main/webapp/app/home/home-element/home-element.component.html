@@ -1,1 +1,15 @@
-<p>home-element works!</p>
+<div *ngIf="homeCodigoDESDE">
+  <p>home-element works!</p>
+
+  <tbody>
+    <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
+      <td *ngIf="codigo.id">
+        <p>codigo: {{ codigo.id }}</p>
+      </td>
+    </tr>
+  </tbody>
+</div>
+
+<div *ngIf!="homeCodigoDESDE">
+  <p>{{ info }}</p>
+</div>

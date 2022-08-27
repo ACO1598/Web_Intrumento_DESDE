@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
 import { ICodigoDESDE } from 'app/entities/codigo-desde/codigo-desde.model';
@@ -12,6 +12,7 @@ import { IIdentificador } from 'app/entities/identificador/identificador.model';
 import { IdentificadorService } from 'app/entities/identificador/service/identificador.service';
 
 import { HomeListElement, IHomeListElement } from './home-list.model';
+import { HomeElementComponent } from '../home-element/home-element.component';
 
 @Component({
   selector: 'jhi-home-list',
@@ -24,6 +25,8 @@ export class HomeListComponent {
   clasificadores?: IClasificador[];
   identificadores?: IIdentificador[];
   elemento: HomeListElement = new HomeListElement(1, 0);
+
+  @Output() msgToHome = new EventEmitter<any>();
 
   constructor(
     protected codigoDESDEService: CodigoDESDEService,
@@ -63,7 +66,6 @@ export class HomeListComponent {
   }
 
   getelementos(): void {
-    this.getcodigos();
     this.getsecciones();
     this.getclasificadores();
     this.getidentificadores();
@@ -73,12 +75,6 @@ export class HomeListComponent {
 
   // Estas funciones extraen las entidades de la base de datos y
   // las asignan a sus arrays correspondientes
-  getcodigos(): void {
-    this.codigoDESDEService.query().subscribe((res: HttpResponse<ICodigoDESDE[]>) => {
-      this.codigoDESDES = res.body ?? [];
-    });
-  }
-
   getsecciones(): void {
     this.seccionService.query().subscribe((res: HttpResponse<ISeccion[]>) => {
       this.seccions = res.body ?? [];
@@ -95,5 +91,10 @@ export class HomeListComponent {
     this.identificadorService.query().subscribe((res: HttpResponse<IIdentificador[]>) => {
       this.identificadores = res.body ?? [];
     });
+  }
+
+  sendmsg(texto: string): void {
+    this.msgToHome.emit(texto);
+    console.log('list manda mensaje' + texto);
   }
 }

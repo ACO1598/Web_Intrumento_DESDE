@@ -1,40 +1,31 @@
-<div class="row">
-  <div class="md-2">
-    <tbody>
-      <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
-        <td *ngIf="codigo.id">
-          <p>codigo: {{ codigo.id }}</p>
-        </td>
-      </tr>
-    </tbody>
+<tbody>
+  <tr *ngFor="let seccion of seccions" data-cy="entityTable">
+    <td>
+      <!-- <a [routerLink]="['list/seccion', seccion.id]">{{ seccion.nombre }}</a> -->
+      <a #myElement (click)="sendmsg(myElement.innerText)">{{ seccion.nombre }}</a>
+    </td>
+  </tr>
+</tbody>
 
-    <tbody>
-      <tr *ngFor="let seccion of seccions" data-cy="entityTable">
-        <td>
-          <a [routerLink]="['list/seccion', seccion.id]">{{ seccion.nombre }}</a>
-        </td>
-      </tr>
-    </tbody>
+<tbody>
+  <tr *ngFor="let clasificador of clasificadores" data-cy="entityTable">
+    <td>
+      <p>Clasificador: {{ clasificador.id }}</p>
+    </td>
+  </tr>
+</tbody>
 
-    <tbody>
-      <tr *ngFor="let clasificador of clasificadores" data-cy="entityTable">
-        <td>
-          <p>Clasificador: {{ clasificador.id }}</p>
-        </td>
-      </tr>
-    </tbody>
+<tbody>
+  <tr *ngFor="let identificador of identificadores" data-cy="entityTable">
+    <td>
+      <p>identificador: {{ identificador.nombre }}</p>
+    </td>
+  </tr>
+</tbody>
 
-    <tbody>
-      <tr *ngFor="let identificador of identificadores" data-cy="entityTable">
-        <td>
-          <p>identificador: {{ identificador.nombre }}</p>
-        </td>
-      </tr>
-    </tbody>
-  </div>
-
-  <div class="md-8">
-    <p>Testing</p>
-    <ng-template jhiDynamicComponent></ng-template>
-  </div>
+<div class="md-8">
+  <p>Testing</p>
+  <ng-template jhiDynamicComponent></ng-template>
 </div>
+
+<p>Testing list</p>

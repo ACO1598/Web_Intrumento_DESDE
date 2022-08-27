@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HomeListComponent } from 'app/home/home-list/home-list.component';
 
 import { ICodigoDESDE } from 'app/entities/codigo-desde/codigo-desde.model';
@@ -10,6 +10,7 @@ import { IClasificador } from 'app/entities/clasificador/clasificador.model';
 import { ClasificadorService } from 'app/entities/clasificador/service/clasificador.service';
 import { IIdentificador } from 'app/entities/identificador/identificador.model';
 import { IdentificadorService } from 'app/entities/identificador/service/identificador.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-home-element',
@@ -17,6 +18,11 @@ import { IdentificadorService } from 'app/entities/identificador/service/identif
   styleUrls: ['./home-element.component.scss'],
 })
 export class HomeElementComponent implements OnInit {
+  @Input() homeCodigoDESDE = true;
+  @Input() info = '';
+
+  codigoDESDES?: ICodigoDESDE[];
+
   constructor(
     protected codigoDESDEService: CodigoDESDEService,
     protected seccionService: SeccionService,
@@ -25,6 +31,12 @@ export class HomeElementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('something');
+    this.getcodigos();
+  }
+
+  getcodigos(): void {
+    this.codigoDESDEService.query().subscribe((res: HttpResponse<ICodigoDESDE[]>) => {
+      this.codigoDESDES = res.body ?? [];
+    });
   }
 }

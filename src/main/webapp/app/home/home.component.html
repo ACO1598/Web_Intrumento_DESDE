@@ -1,3 +1,15 @@
 <h1>Testing</h1>
 
-<a [routerLink]="['list/']">Purebas</a>
+<jhi-alert-error></jhi-alert-error>
+
+<jhi-alert></jhi-alert>
+
+<div class="row">
+  <div class="md-2">
+    <jhi-home-list (msgToHome)="fwdMsg($event)"></jhi-home-list>
+  </div>
+
+  <div class="md-8">
+    <jhi-home-element [info]="entidad"></jhi-home-element>
+  </div>
+</div>
