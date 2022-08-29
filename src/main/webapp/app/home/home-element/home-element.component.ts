@@ -11,6 +11,7 @@ import { ClasificadorService } from 'app/entities/clasificador/service/clasifica
 import { IIdentificador } from 'app/entities/identificador/identificador.model';
 import { IdentificadorService } from 'app/entities/identificador/service/identificador.service';
 import { HttpResponse } from '@angular/common/http';
+import { HomeListElement } from '../home-list/home-list.model';
 
 @Component({
   selector: 'jhi-home-element',
@@ -19,7 +20,7 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class HomeElementComponent implements OnInit {
   @Input() homeCodigoDESDE = true;
-  @Input() info = '';
+  @Input() info: HomeListElement;
 
   codigoDESDES?: ICodigoDESDE[];
 
@@ -28,7 +29,9 @@ export class HomeElementComponent implements OnInit {
     protected seccionService: SeccionService,
     protected clasificadorService: ClasificadorService,
     protected identificadorService: IdentificadorService
-  ) {}
+  ) {
+    this.info = new HomeListElement();
+  }
 
   ngOnInit(): void {
     this.getcodigos();

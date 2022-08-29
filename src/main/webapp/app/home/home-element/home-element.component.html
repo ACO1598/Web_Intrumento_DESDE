@@ -1,4 +1,4 @@
-<div *ngIf="homeCodigoDESDE">
+<div *ngIf="homeCodigoDESDE; else elseBlock">
   <p>home-element works!</p>
 
   <tbody>
@@ -10,6 +10,9 @@
   </tbody>
 </div>
 
-<div *ngIf!="homeCodigoDESDE">
-  <p>{{ info }}</p>
-</div>
+<ng-template #elseBlock>
+  <div>
+    <p>{{ info.nombre }}</p>
+  </div>
+  <p>Testing</p>
+</ng-template>

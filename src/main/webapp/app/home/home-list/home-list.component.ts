@@ -5,7 +5,7 @@ import { HttpResponse } from '@angular/common/http';
 import { ICodigoDESDE } from 'app/entities/codigo-desde/codigo-desde.model';
 import { CodigoDESDEService } from 'app/entities/codigo-desde/service/codigo-desde.service';
 import { SeccionService } from 'app/entities/seccion/service/seccion.service';
-import { ISeccion } from 'app/entities/seccion/seccion.model';
+import { ISeccion, Seccion } from 'app/entities/seccion/seccion.model';
 import { IClasificador } from 'app/entities/clasificador/clasificador.model';
 import { ClasificadorService } from 'app/entities/clasificador/service/clasificador.service';
 import { IIdentificador } from 'app/entities/identificador/identificador.model';
@@ -24,7 +24,7 @@ export class HomeListComponent {
   seccions?: ISeccion[];
   clasificadores?: IClasificador[];
   identificadores?: IIdentificador[];
-  elemento: HomeListElement = new HomeListElement(1, 0);
+  /* elemento: HomeListElement = new HomeListElement(1, 0); */
 
   @Output() msgToHome = new EventEmitter<any>();
 
@@ -37,8 +37,6 @@ export class HomeListComponent {
 
   ngOnInit(): void {
     this.getelementos();
-
-    console.log('Elemento: ', this.elemento);
   }
 
   ordenarJerarquias(): void {
@@ -66,6 +64,7 @@ export class HomeListComponent {
   }
 
   getelementos(): void {
+    this.getcodigos();
     this.getsecciones();
     this.getclasificadores();
     this.getidentificadores();
@@ -75,6 +74,12 @@ export class HomeListComponent {
 
   // Estas funciones extraen las entidades de la base de datos y
   // las asignan a sus arrays correspondientes
+  getcodigos(): void {
+    this.codigoDESDEService.query().subscribe((res: HttpResponse<ICodigoDESDE[]>) => {
+      this.codigoDESDES = res.body ?? [];
+    });
+  }
+
   getsecciones(): void {
     this.seccionService.query().subscribe((res: HttpResponse<ISeccion[]>) => {
       this.seccions = res.body ?? [];
@@ -93,8 +98,10 @@ export class HomeListComponent {
     });
   }
 
-  sendmsg(texto: string): void {
-    this.msgToHome.emit(texto);
-    console.log('list manda mensaje' + texto);
+  sendmsg(elemento: any, homeCodigoDESDE: string): void {
+    const msg = new HomeListElement(elemento.nombre, elemento.descripcion, elemento.codigo, elemento.ejemplos);
+
+    this.msgToHome.emit(msg);
+    console.log(msg);
   }
 }

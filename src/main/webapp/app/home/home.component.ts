@@ -19,6 +19,7 @@ import { ClasificadorService } from 'app/entities/clasificador/service/clasifica
 import { IIdentificador } from 'app/entities/identificador/identificador.model';
 import { IdentificadorService } from 'app/entities/identificador/service/identificador.service';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
+import { HomeListElement } from './home-list/home-list.model';
 
 @Component({
   selector: 'jhi-home',
@@ -32,7 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   clasificadores?: IClasificador[];
   identificadores?: IIdentificador[];
   idEntidad: number | undefined;
-  entidad: string;
+  entidad: HomeListElement;
+  homeCodigoDESDE = true;
 
   private readonly destroy$ = new Subject<void>();
 
@@ -44,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     protected clasificadorService: ClasificadorService,
     protected identificadorService: IdentificadorService
   ) {
-    this.entidad = '';
+    this.entidad = new HomeListElement();
   }
 
   ngOnInit(): void {
@@ -63,8 +65,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  fwdMsg($event: string): void {
+  fwdMsg($event: any): void {
     this.entidad = $event;
-    console.log('msg from list: ' + this.entidad);
+    this.homeCodigoDESDE = false;
+    console.log(this.entidad.nombre);
   }
 }

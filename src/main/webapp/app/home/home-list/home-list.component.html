@@ -1,8 +1,16 @@
 <tbody>
+  <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
+    <td *ngIf="codigo.id">
+      <a (click)="sendmsg(codigo, 'true')">{{ codigo.introduccion }}</a>
+    </td>
+  </tr>
+</tbody>
+
+<tbody>
   <tr *ngFor="let seccion of seccions" data-cy="entityTable">
     <td>
       <!-- <a [routerLink]="['list/seccion', seccion.id]">{{ seccion.nombre }}</a> -->
-      <a #myElement (click)="sendmsg(myElement.innerText)">{{ seccion.nombre }}</a>
+      <a (click)="sendmsg(seccion, 'false')">{{ seccion.nombre }}</a>
     </td>
   </tr>
 </tbody>
@@ -22,10 +30,5 @@
     </td>
   </tr>
 </tbody>
-
-<div class="md-8">
-  <p>Testing</p>
-  <ng-template jhiDynamicComponent></ng-template>
-</div>
 
 <p>Testing list</p>
