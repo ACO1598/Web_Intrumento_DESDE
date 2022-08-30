@@ -1,7 +1,7 @@
 <tbody>
   <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
     <td *ngIf="codigo.id">
-      <a (click)="sendmsg(codigo, 'true')">{{ codigo.introduccion }}</a>
+      <a (click)="sendmsg(codigo, false)">{{ codigo.id }}</a>
     </td>
   </tr>
 </tbody>
@@ -10,7 +10,7 @@
   <tr *ngFor="let seccion of seccions" data-cy="entityTable">
     <td>
       <!-- <a [routerLink]="['list/seccion', seccion.id]">{{ seccion.nombre }}</a> -->
-      <a (click)="sendmsg(seccion, 'false')">{{ seccion.nombre }}</a>
+      <a (click)="sendmsg(seccion, true)">sec: {{ seccion.nombre }}</a>
     </td>
   </tr>
 </tbody>
@@ -18,7 +18,7 @@
 <tbody>
   <tr *ngFor="let clasificador of clasificadores" data-cy="entityTable">
     <td>
-      <p>Clasificador: {{ clasificador.id }}</p>
+      <a (click)="sendmsg(clasificador, true)">cla: {{ clasificador.nombre }}</a>
     </td>
   </tr>
 </tbody>
@@ -26,9 +26,7 @@
 <tbody>
   <tr *ngFor="let identificador of identificadores" data-cy="entityTable">
     <td>
-      <p>identificador: {{ identificador.nombre }}</p>
+      <a (click)="sendmsg(identificador, true)">iden: {{ identificador.nombre }}</a>
     </td>
   </tr>
 </tbody>
-
-<p>Testing list</p>
