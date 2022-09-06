@@ -1,36 +1,18 @@
-<div *ngIf="info; else errorBlock">
-  <div *ngIf="info.homeCodigoDESDE; else elseBlock">
-    <div>
-      <div *ngIf="info.nombre" class="container">
-        <p>nombre: {{ info.nombre }}</p>
-      </div>
-      <div *ngIf="info.codigo" class="container">
-        <p>codigo: {{ info.codigo }}</p>
-      </div>
-      <div *ngIf="info.descripcion" class="container">
-        <p>descripcion: {{ info.descripcion }}</p>
-      </div>
-      <div *ngIf="info.ejemplos" class="container">
-        <p>ejemplos: {{ info.ejemplos }}</p>
-      </div>
-    </div>
-  </div>
+<div *ngIf="homeCodigoDESDE; else elseBlock">
+  <p>home-element works!</p>
 
-  <ng-template #elseBlock>
-    <p>home-element works!</p>
-
-    <tbody>
-      <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
-        <td *ngIf="codigo.id">
-          <p>codigo: {{ codigo.id }}</p>
-        </td>
-      </tr>
-    </tbody>
-  </ng-template>
+  <tbody>
+    <tr *ngFor="let codigo of codigoDESDES" data-cy="entityTable">
+      <td *ngIf="codigo.id">
+        <p>codigo: {{ codigo.id }}</p>
+      </td>
+    </tr>
+  </tbody>
 </div>
 
-<ng-template #errorBlock>
-  <jhi-alert-error></jhi-alert-error>
-
-  <jhi-alert></jhi-alert>
+<ng-template #elseBlock>
+  <div>
+    <p>{{ info.nombre }}</p>
+  </div>
+  <p>Testing</p>
 </ng-template>

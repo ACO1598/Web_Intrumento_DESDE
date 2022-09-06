@@ -124,9 +124,8 @@ export class HomeListComponent {
     });
   }
 
-  //Manda la interfaz con todos los datos relevantes al home-element
-  sendmsg(elemento: any, homeCodigoDESDE: boolean): void {
-    const msg = new HomeListElement(elemento.nombre, elemento.descripcion, elemento.codigo, elemento.ejemplos, homeCodigoDESDE);
+  sendmsg(elemento: any, homeCodigoDESDE: string): void {
+    const msg = new HomeListElement(elemento.nombre, elemento.descripcion, elemento.codigo, elemento.ejemplos);
 
     this.msgToHome.emit(msg);
     console.log(msg);
