@@ -30,7 +30,7 @@ export class HomeElementComponent implements OnInit {
     protected clasificadorService: ClasificadorService,
     protected identificadorService: IdentificadorService
   ) {
-    this.info = new HomeListElement();
+    this.info = new HomeListElement('');
   }
 
   ngOnInit(): void {

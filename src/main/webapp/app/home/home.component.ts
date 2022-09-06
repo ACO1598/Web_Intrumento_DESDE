@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     protected clasificadorService: ClasificadorService,
     protected identificadorService: IdentificadorService
   ) {
-    this.entidad = new HomeListElement();
+    this.entidad = new HomeListElement('');
   }
 
   ngOnInit(): void {
