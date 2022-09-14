@@ -9,6 +9,5 @@ import { ClasificadorRoutingModule } from './route/clasificador-routing.module';
 @NgModule({
   imports: [SharedModule, ClasificadorRoutingModule],
   declarations: [ClasificadorComponent, ClasificadorDetailComponent, ClasificadorUpdateComponent, ClasificadorDeleteDialogComponent],
-  entryComponents: [ClasificadorDeleteDialogComponent],
 })
 export class ClasificadorModule {}

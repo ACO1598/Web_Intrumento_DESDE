@@ -9,6 +9,5 @@ import { CodigoDESDERoutingModule } from './route/codigo-desde-routing.module';
 @NgModule({
   imports: [SharedModule, CodigoDESDERoutingModule],
   declarations: [CodigoDESDEComponent, CodigoDESDEDetailComponent, CodigoDESDEUpdateComponent, CodigoDESDEDeleteDialogComponent],
-  entryComponents: [CodigoDESDEDeleteDialogComponent],
 })
 export class CodigoDESDEModule {}

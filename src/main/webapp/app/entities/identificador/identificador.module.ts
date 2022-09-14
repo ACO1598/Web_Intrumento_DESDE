@@ -9,6 +9,5 @@ import { IdentificadorRoutingModule } from './route/identificador-routing.module
 @NgModule({
   imports: [SharedModule, IdentificadorRoutingModule],
   declarations: [IdentificadorComponent, IdentificadorDetailComponent, IdentificadorUpdateComponent, IdentificadorDeleteDialogComponent],
-  entryComponents: [IdentificadorDeleteDialogComponent],
 })
 export class IdentificadorModule {}

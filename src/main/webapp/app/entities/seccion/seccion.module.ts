@@ -9,6 +9,5 @@ import { SeccionRoutingModule } from './route/seccion-routing.module';
 @NgModule({
   imports: [SharedModule, SeccionRoutingModule],
   declarations: [SeccionComponent, SeccionDetailComponent, SeccionUpdateComponent, SeccionDeleteDialogComponent],
-  entryComponents: [SeccionDeleteDialogComponent],
 })
 export class SeccionModule {}
