@@ -19,7 +19,7 @@ import { HomeListElement } from '../home-list/home-list.model';
   styleUrls: ['./home-element.component.scss'],
 })
 export class HomeElementComponent implements OnInit {
-  //@Input() homeCodigoDESDE = true;
+  @Input() homeCodigoDESDE = true;
   @Input() info: HomeListElement;
 
   codigoDESDES?: ICodigoDESDE[];

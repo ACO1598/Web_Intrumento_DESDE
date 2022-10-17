@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   fwdMsg($event: any): void {
     this.entidad = $event;
-    //this.homeCodigoDESDE = this.entidad.homeCodigoDESDE;
+    this.homeCodigoDESDE = false;
     console.log(this.entidad.nombre);
   }
 }
